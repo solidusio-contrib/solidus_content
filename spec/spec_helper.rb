@@ -22,3 +22,5 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
   config.use_transactional_fixtures = false
 end
+
+FIXTURE_PATH = File.expand_path('fixtures', __dir__)

@@ -13,7 +13,7 @@ RSpec.describe SolidusContent::Configuration do
     end
 
     context 'with a configuration' do
-      let(:foo_content_provider) { double(:foo_content_provider) } 
+      let(:foo_content_provider) { double(:foo_content_provider) }
       before { configuration.content_providers[:foo] = foo_content_provider }
 
       context 'asking for an existing configuration' do
@@ -26,8 +26,8 @@ RSpec.describe SolidusContent::Configuration do
         it 'returns the configuration' do
           expect { configuration.content_providers[:bar] }
             .to raise_error(
-              SolidusContent::Configuration::UnknownRenderer,
-              "Can't find a renderer for :bar"
+              SolidusContent::Configuration::UnknownProvider,
+              "Can't find a provider for :bar"
             )
         end
       end

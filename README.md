@@ -19,6 +19,30 @@ bundle
 bundle exec rails g solidus_content:install
 ```
 
+Usage
+-----
+
+```rb
+home_entry_type = SolidusContent::EntryType.create!(
+  name: :home,
+  content_provider_name: :json,
+  options: { path: 'app/content/home' }
+)
+
+home = SolidusContent.create!(
+  content_type: home_entry_type,
+  slug: :default,
+)
+```
+
+Inside `app/views/spree/home/index.html.erb`:
+
+```erb
+<% data = SolidusContent::Entry.data_for(:home, :default) %>
+
+<h1><%= data[:title] %></h1>
+```
+
 Configuration
 -------------
 
@@ -32,37 +56,43 @@ SolidusContent.configure do |config|
 end
 ```
 
+Available Content Providers
+---------------------------
+
+Documentation for providers.
+
 Registering a content provider
 ==============================
 
 To register a content-provider, add a callable to the configuration under the 
-name you prefer. Each content-provider will be called passing the 
-`entry_options:` and `entry_type_options:`. 
-
-As an example the `RawContent` content provider will return the entry options as
-data.
+name you prefer. The 
 
 ```rb
-class RawContent
-  def initialize(entry_options:, entry_type_options:)
-    def initialize(entry_options:, entry_type_options:)
-      @entry_options = entry_options.with_indifferent_access
-      @entry_type_options = entry_type_options.with_indifferent_access
-    end
+SolidusContent.config.content_providers[:json] = ->(input) {
+  dir = Rails.root.join(input.dig(:type_options, :path))
+  file = dir.join(input[:slug] + '.json')
+  data = JSON.parse(file.read, symbolize_names: true)
 
-    def data
-      @entry_options.with_indifferent_access
-    end
-  end
-end
-
-SolidusContent.config.content_providers[:raw] = ->(*args) {
-  RawContent.new(*args)
+  input.merge(data: data)
 }
 ```
 
-_Content providers are wrapped in callables to avoid issues with Rails constant 
-reloading._
+The `input` passed to the content-provider will have the following keys:
+
+- `slug`: the slug of the content-entry
+- `type`: the name of the content-type
+- `provider`: the name of the content-provider
+- `options`: the entry options
+- `type_options`: the content-type options
+
+The `output` of the content-provider is the `input` hash augmented with the 
+following keys:
+
+- `data`: the content itself
+- `provider_client`: (optional) the client of the external service
+- `provider_entry`: (optional) the object retrieved from the external service
+
+In both the input and output all keys should be symbolized.
 
 Testing
 -------

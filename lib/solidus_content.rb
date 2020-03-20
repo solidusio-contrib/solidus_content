@@ -21,4 +21,8 @@ module SolidusContent
       yield config
     end
   end
+
+  # This module will be the namespace for default providers
+  module ContentProviders
+  end
 end
