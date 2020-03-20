@@ -19,6 +19,19 @@ bundle
 bundle exec rails g solidus_content:install
 ```
 
+Configuration
+-------------
+
+Configure SolidusContent in an initializer:
+
+```rb
+# config/initializers/solidus_content.rb
+
+SolidusContent.configure do |config|
+  # your configuration goes here...
+end
+```
+
 Testing
 -------
 

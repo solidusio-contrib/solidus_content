@@ -3,6 +3,7 @@
 module SolidusContent
   module Generators
     class InstallGenerator < Rails::Generators::Base
+      source_root File.expand_path('templates', __dir__)
       class_option :auto_run_migrations, type: :boolean, default: false
 
       def add_javascripts
@@ -26,6 +27,10 @@ module SolidusContent
         else
           puts 'Skipping bin/rails db:migrate, don\'t forget to run it!' # rubocop:disable Rails/Output
         end
+      end
+
+      def copy_initializer
+        copy_file 'initializer.rb', 'config/initializers/solidus_content.rb'
       end
     end
   end
