@@ -32,6 +32,38 @@ SolidusContent.configure do |config|
 end
 ```
 
+Registering a content provider
+==============================
+
+To register a content-provider, add a callable to the configuration under the 
+name you prefer. Each content-provider will be called passing the 
+`entry_options:` and `entry_type_options:`. 
+
+As an example the `RawContent` content provider will return the entry options as
+data.
+
+```rb
+class RawContent
+  def initialize(entry_options:, entry_type_options:)
+    def initialize(entry_options:, entry_type_options:)
+      @entry_options = entry_options.with_indifferent_access
+      @entry_type_options = entry_type_options.with_indifferent_access
+    end
+
+    def data
+      @entry_options.with_indifferent_access
+    end
+  end
+end
+
+SolidusContent.config.content_providers[:raw] = ->(*args) {
+  RawContent.new(*args)
+}
+```
+
+_Content providers are wrapped in callables to avoid issues with Rails constant 
+reloading._
+
 Testing
 -------
 
