@@ -59,7 +59,29 @@ end
 Available Content Providers
 ---------------------------
 
-Documentation for providers.
+### JSON
+
+Will fetch the data from a JSON file within the directory specified by the 
+`path` entry-type option and with a basename corresponding to the entry `slug`.
+
+```rb
+posts = SolidusContent::EntryType.create(
+  name: 'posts',
+  content_provider_name: 'json', 
+  options: {path: 'data/posts'}
+)
+entry = SolidusContent::Entry.create(
+  slug: '2020-03-27-hello-world',
+  entry_type: posts,
+)
+```
+
+```json
+// [RAILS_ROOT]/data/posts/2020-03-27-hello-world.json
+{"title": "Hello World!", "body": "My first post!"}
+```
+
+_NOTE: Absolute paths are taken as they are and won't be joined to `Rails.root`._
 
 Registering a content provider
 ==============================

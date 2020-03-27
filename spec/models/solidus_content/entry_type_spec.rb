@@ -29,6 +29,14 @@ RSpec.describe SolidusContent::EntryType do
       end
     end
 
+    context 'with the JSON provider' do
+      let(:content_provider_name) { 'json' }
+      let(:entry_type_options) { {path: "#{FIXTURES_PATH}/content"} }
+      let(:content) { {foo: "bar"} }
+
+      it_behaves_like :content_provider
+    end
+
     context 'with an unknown provider' do
       let(:content_provider_name) { 'unknown' }
 

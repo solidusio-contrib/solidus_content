@@ -26,3 +26,5 @@ module SolidusContent
   module ContentProviders
   end
 end
+
+require 'solidus_content/content_providers/json'
