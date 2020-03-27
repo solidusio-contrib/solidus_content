@@ -61,13 +61,13 @@ Available Content Providers
 
 ### RAW
 
-This is the most simple provider, its data will come directly from the entry 
+This is the most simple provider, its data will come directly from the entry
 options.
 
 ```rb
 posts = SolidusContent::EntryType.create(
   name: 'posts',
-  content_provider_name: 'raw', 
+  content_provider_name: 'raw',
 )
 entry = SolidusContent::Entry.create(
   slug: '2020-03-27-hello-world',
@@ -78,13 +78,13 @@ entry = SolidusContent::Entry.create(
 
 ### JSON
 
-Will fetch the data from a JSON file within the directory specified by the 
+Will fetch the data from a JSON file within the directory specified by the
 `path` entry-type option and with a basename corresponding to the entry `slug`.
 
 ```rb
 posts = SolidusContent::EntryType.create(
   name: 'posts',
-  content_provider_name: 'json', 
+  content_provider_name: 'json',
   options: {path: 'data/posts'}
 )
 entry = SolidusContent::Entry.create(
@@ -100,11 +100,39 @@ entry = SolidusContent::Entry.create(
 
 _NOTE: Absolute paths are taken as they are and won't be joined to `Rails.root`._
 
+### YAML
+
+Will fetch the data from a YAML file within the directory specified by the
+`path` entry-type option and with a basename corresponding to the entry `slug`.
+
+If there isn't a file with the `yml` extension, the `yaml` extension will be tried.
+
+```rb
+posts = SolidusContent::EntryType.create(
+  name: 'posts',
+  content_provider_name: 'yaml',
+  options: {path: 'data/posts'}
+)
+entry = SolidusContent::Entry.create(
+  slug: '2020-03-27-hello-world',
+  entry_type: posts,
+)
+```
+
+```yaml
+# [RAILS_ROOT]/data/posts/2020-03-27-hello-world.yml
+
+title: Hello World!
+body: My first post!
+```
+
+_NOTE: Absolute paths are taken as they are and won't be joined to `Rails.root`._
+
 Registering a content provider
 ==============================
 
-To register a content-provider, add a callable to the configuration under the 
-name you prefer. The 
+To register a content-provider, add a callable to the configuration under the
+name you prefer. The
 
 ```rb
 SolidusContent.config.content_providers[:json] = ->(input) {
@@ -124,7 +152,7 @@ The `input` passed to the content-provider will have the following keys:
 - `options`: the entry options
 - `type_options`: the content-type options
 
-The `output` of the content-provider is the `input` hash augmented with the 
+The `output` of the content-provider is the `input` hash augmented with the
 following keys:
 
 - `data`: the content itself
