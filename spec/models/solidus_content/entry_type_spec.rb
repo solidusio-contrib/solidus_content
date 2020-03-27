@@ -37,6 +37,14 @@ RSpec.describe SolidusContent::EntryType do
       it_behaves_like :content_provider
     end
 
+    context 'with the RAW provider' do
+      let(:content_provider_name) { 'raw' }
+      let(:entry_options) { {foo: "bar"} }
+      let(:content) { {foo: "bar"} }
+
+      it_behaves_like :content_provider
+    end
+
     context 'with an unknown provider' do
       let(:content_provider_name) { 'unknown' }
 

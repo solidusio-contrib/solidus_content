@@ -28,3 +28,4 @@ module SolidusContent
 end
 
 require 'solidus_content/content_providers/json'
+require 'solidus_content/content_providers/raw'

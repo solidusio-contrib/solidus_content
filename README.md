@@ -59,6 +59,23 @@ end
 Available Content Providers
 ---------------------------
 
+### RAW
+
+This is the most simple provider, its data will come directly from the entry 
+options.
+
+```rb
+posts = SolidusContent::EntryType.create(
+  name: 'posts',
+  content_provider_name: 'raw', 
+)
+entry = SolidusContent::Entry.create(
+  slug: '2020-03-27-hello-world',
+  entry_type: posts,
+  options: {title: "Hello World!", body: "My first post!"}
+)
+```
+
 ### JSON
 
 Will fetch the data from a JSON file within the directory specified by the 
