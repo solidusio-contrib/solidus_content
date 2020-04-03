@@ -1,4 +1,4 @@
-class CreateSolidusContentEntries < ActiveRecord::Migration[6.0]
+class CreateSolidusContentEntries < ActiveRecord::Migration[5.0]
   def change
     create_table :solidus_content_entries do |t|
       t.references :entry_type, null: false
