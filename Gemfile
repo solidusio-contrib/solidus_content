@@ -25,6 +25,8 @@ end
 
 # Supported content providers
 gem 'contentful'
+gem 'prismic.io', require: 'prismic'
+
 gemspec
 
 # Use a local Gemfile to include development dependencies that might not be

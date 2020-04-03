@@ -45,6 +45,13 @@ RSpec.describe SolidusContent::EntryType do
       it_behaves_like :content_provider
     end
 
+    context 'with the Prismic provider' do
+      let(:content_provider_name) { 'prismic' }
+      let(:content) { { foo: "bar" } }
+
+      it_behaves_like :content_provider
+    end
+
     context 'with an unknown provider' do
       let(:content_provider_name) { 'unknown' }
 
