@@ -45,9 +45,16 @@ RSpec.describe SolidusContent::EntryType do
       it_behaves_like :content_provider
     end
 
+    context 'with the solidus static content provider' do
+      let(:content_provider_name) { 'solidus_static_content' }
+      let(:content) { { foo: 'bar' } }
+
+      it_behaves_like :content_provider
+    end
+
     context 'with the Prismic provider' do
       let(:content_provider_name) { 'prismic' }
-      let(:content) { { foo: "bar" } }
+      let(:content) { { foo: 'bar' } }
 
       it_behaves_like :content_provider
     end
