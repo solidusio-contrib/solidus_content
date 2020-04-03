@@ -22,25 +22,74 @@ bundle exec rails g solidus_content:install
 Usage
 -----
 
+Create an entry type for the home page:
+
 ```rb
 home_entry_type = SolidusContent::EntryType.create!(
   name: :home,
   content_provider_name: :json,
-  options: { path: 'app/content/home' }
+  options: { path: 'data/home' }
 )
+```
 
+Create a default entry for the home page:
+
+```rb
 home = SolidusContent.create!(
   content_type: home_entry_type,
   slug: :default,
 )
 ```
 
-Inside `app/views/spree/home/index.html.erb`:
+And then write a file inside your app root under `data/home/default.json`:
+
+```json
+{"title":"Hello World!"}
+```
+
+### Within an existing view
+
+Use the content inside an existing view, e.g. `app/views/spree/home/index.html.erb`:
 
 ```erb
 <% data = SolidusContent::Entry.data_for(:home, :default) %>
 
 <h1><%= data[:title] %></h1>
+```
+
+### With the default route
+
+SolidusContent will add a default route that starts with `/c/`, by adding a view
+inside `app/views/spree/solidus_content/` with the name of the entry type you'll
+be able to render your content.
+
+E.g. `app/views/spree/solidus_content/home.html.erb`:
+```erb
+<h1><%= data[:title] %></h1>
+```
+
+Then, visit `/c/home/default` or even just `/c/home` (when the content slug is 
+"default" it can be omitted).
+
+
+### With a custom route
+
+You can also define a custom route and use the SolidusContent controller to 
+render your content from a dedicated view:
+
+```rb
+# config/routes.rb
+Spree::Core::Engine.routes.draw do
+  # Will render app/views/spree/solidus_content/home.html.erb
+  root to: 'solidus_content#show', type: :home, id: :default
+
+  # Will render app/views/spree/solidus_content/info.html.erb
+  get "privacy", to: 'solidus_content#show', type: :info, id: :privacy
+  get "legal", to: 'solidus_content#show', type: :info, id: :legal
+
+  # Will render app/views/spree/solidus_content/info.html.erb
+  get "blog/:id", to: 'solidus_content#show', type: :post
+end
 ```
 
 Configuration
@@ -53,6 +102,13 @@ Configure SolidusContent in an initializer:
 
 SolidusContent.configure do |config|
   # your configuration goes here...
+
+  # See "Registering a content provider" for detailed instructions
+  # config.content_providers[:my_provider] = ->(input) { … }
+
+  # Set to `true` to register your own route, instead of using the default
+  # that starts with `/c/`.
+  # config.skip_default_route = true
 end
 ```
 

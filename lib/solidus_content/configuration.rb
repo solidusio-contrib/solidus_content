@@ -13,4 +13,8 @@ class SolidusContent::Configuration
       raise UnknownProvider, "Can't find a provider for #{key.inspect}"
     end
   end
+
+  # Set to true to prevent SolidusContent from adding the default route.
+  # See also the README and config/routes.rb.
+  attr_accessor :skip_default_route
 end
