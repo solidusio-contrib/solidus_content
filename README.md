@@ -22,17 +22,29 @@ bundle exec rails g solidus_content:install
 Usage
 -----
 
+Create an entry type for the home page:
+
 ```rb
 home_entry_type = SolidusContent::EntryType.create!(
   name: :home,
   content_provider_name: :json,
-  options: { path: 'app/content/home' }
+  options: { path: 'data/home' }
 )
+```
 
+Create a default entry for the home page:
+
+```rb
 home = SolidusContent.create!(
   content_type: home_entry_type,
   slug: :default,
 )
+```
+
+And then write a file inside your app root under `data/home/default.json`:
+
+```json
+{"title":"Hello World!"}
 ```
 
 ### Within an existing view
