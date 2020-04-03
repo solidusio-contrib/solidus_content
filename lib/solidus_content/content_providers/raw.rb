@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Let the content come from the entry itself.
 module SolidusContent::ContentProviders::RAW
   def self.call(input)

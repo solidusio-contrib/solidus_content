@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SolidusContent::ContentProviders::Contentful
   def self.call(input)
     type_options = input.dig(:type_options)
