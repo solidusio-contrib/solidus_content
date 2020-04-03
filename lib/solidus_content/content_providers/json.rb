@@ -6,6 +6,4 @@ module SolidusContent::ContentProviders::JSON
   
     input.merge(data: data)
   end
-
-  SolidusContent.config.content_providers[:json] = self
 end

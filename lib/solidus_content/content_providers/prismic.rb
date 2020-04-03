@@ -18,6 +18,4 @@ module SolidusContent::ContentProviders::Prismic
       provider_entry: entry,
     )
   end
-
-  SolidusContent.config.content_providers[:prismic] = self
 end

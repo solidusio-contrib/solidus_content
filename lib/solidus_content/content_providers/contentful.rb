@@ -16,6 +16,4 @@ module SolidusContent::ContentProviders::Contentful
       provider_entry: entry,
     )
   end
-
-  SolidusContent.config.content_providers[:contentful] = self
 end

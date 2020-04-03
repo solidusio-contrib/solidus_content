@@ -6,6 +6,4 @@ module SolidusContent::ContentProviders::SolidusStaticContent
 
     input.merge(data: Spree::Page.find_by!(slug: slug).attributes.symbolize_keys)
   end
-
-  SolidusContent.config.content_providers[:solidus_static_content] = self
 end

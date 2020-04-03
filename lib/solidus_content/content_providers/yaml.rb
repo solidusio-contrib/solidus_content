@@ -24,6 +24,4 @@ module SolidusContent::ContentProviders::YAML
       YAML.load(file.read, file.to_s, symbolize_names: true)
     end
   end
-
-  SolidusContent.config.content_providers[:yaml] = self
 end
