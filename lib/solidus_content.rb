@@ -30,3 +30,4 @@ end
 require 'solidus_content/content_providers/json'
 require 'solidus_content/content_providers/raw'
 require 'solidus_content/content_providers/yaml'
+require 'solidus_content/content_providers/contentful'

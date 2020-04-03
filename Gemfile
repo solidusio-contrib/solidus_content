@@ -23,6 +23,8 @@ else
   gem 'sqlite3'
 end
 
+# Supported content providers
+gem 'contentful'
 gemspec
 
 # Use a local Gemfile to include development dependencies that might not be

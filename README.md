@@ -128,6 +128,30 @@ body: My first post!
 
 _NOTE: Absolute paths are taken as they are and won't be joined to `Rails.root`._
 
+### Contentful
+
+To fetch the data we have to create a connection with Contentful passing the
+`contentful_space_id` and the `contentful_access_token` to the entry-type options.
+
+Will fetch the data from Contentful passing the `entry_id` entry option.
+
+```rb
+posts = SolidusContent::EntryType.create(
+  name: 'posts',
+  content_provider_name: 'contentful',
+  options: {
+    contentful_space_id: 'XXX',
+    contentful_access_token: 'XXX'
+  }
+)
+
+entry = SolidusContent::Entry.create!(
+  slug: '2020-03-27-hello-world',
+  entry_type: posts,
+  options: { entry_id: 'XXX' }
+)
+```
+
 Registering a content provider
 ==============================
 
