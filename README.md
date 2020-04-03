@@ -184,6 +184,24 @@ body: My first post!
 
 _NOTE: Absolute paths are taken as they are and won't be joined to `Rails.root`._
 
+### Solidus static content
+
+To retrieve the page we have to pass the page `slug` to the entry options.
+If the page slug is the same of the entry one, we can avoid passing the options.
+
+```rb
+posts = SolidusContent::EntryType.create(
+  name: 'posts',
+  content_provider_name: 'solidus_static_content'
+)
+
+entry = SolidusContent::Entry.create!(
+  slug: '2020-03-27-hello-world',
+  entry_type: posts,
+  options: { slug: 'XXX' } # Can be omitted if the page slug is the same of the entry
+)
+```
+
 ### Contentful
 
 To fetch the data we have to create a connection with Contentful passing the

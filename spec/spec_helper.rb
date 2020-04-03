@@ -17,6 +17,7 @@ Dir[File.join(File.dirname(__FILE__), 'support/**/*.rb')].each { |f| require f }
 
 # Requires factories defined in lib/solidus_content/factories.rb
 require 'solidus_content/factories'
+require 'solidus_static_content/factories'
 
 RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
