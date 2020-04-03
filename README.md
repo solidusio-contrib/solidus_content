@@ -91,6 +91,9 @@ Configure SolidusContent in an initializer:
 SolidusContent.configure do |config|
   # your configuration goes here...
 
+  # See "Registering a content provider" for detailed instructions
+  # config.content_providers[:my_provider] = ->(input) { … }
+
   # Set to `true` to register your own route, instead of using the default
   # that starts with `/c/`.
   # config.skip_default_route = true
