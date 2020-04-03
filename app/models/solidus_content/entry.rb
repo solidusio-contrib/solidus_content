@@ -2,6 +2,7 @@
 
 class SolidusContent::Entry < ActiveRecord::Base
   belongs_to :entry_type
+  after_initialize { self.options ||= {} }
 
   def data
     content[:data]

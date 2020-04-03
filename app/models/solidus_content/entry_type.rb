@@ -1,5 +1,6 @@
 class SolidusContent::EntryType < ActiveRecord::Base
   has_many :entries
+  after_initialize { self.options ||= {} }
 
   def content_for(entry)
     content_provider.call(
