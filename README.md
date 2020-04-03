@@ -202,6 +202,8 @@ entry = SolidusContent::Entry.create!(
 )
 ```
 
+_Be sure to have added `gem "solidus_static_content"` to your Gemfile._
+
 ### Contentful
 
 To fetch the data we have to create a connection with Contentful passing the
@@ -225,6 +227,8 @@ entry = SolidusContent::Entry.create!(
   options: { entry_id: 'XXX' }
 )
 ```
+
+_Be sure to have added `gem "contentful"` to your Gemfile._
 
 ### Prismic
 
@@ -251,6 +255,8 @@ entry = SolidusContent::Entry.create!(
   options: { id: 'XXX' }
 )
 ```
+
+_Be sure to have added `gem "prismic.io"` to your Gemfile._
 
 Registering a content provider
 ==============================

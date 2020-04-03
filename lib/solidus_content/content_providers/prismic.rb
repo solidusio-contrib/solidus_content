@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'prismic'
+
 module SolidusContent::ContentProviders::Prismic
   def self.call(input)
     type_options = input.dig(:type_options)
