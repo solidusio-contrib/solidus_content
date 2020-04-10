@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "active_support/dependencies/autoload"
+
 require 'solidus_core'
 require 'solidus_support'
 
@@ -24,12 +26,13 @@ module SolidusContent
 
   # This module will be the namespace for default providers
   module ContentProviders
+    extend ActiveSupport::Autoload
+
+    autoload :JSON
+    autoload :RAW
+    autoload :YAML
+    autoload :Contentful
+    autoload :Prismic
+    autoload :SolidusStaticContent
   end
 end
-
-require 'solidus_content/content_providers/json'
-require 'solidus_content/content_providers/raw'
-require 'solidus_content/content_providers/yaml'
-require 'solidus_content/content_providers/contentful'
-require 'solidus_content/content_providers/prismic'
-require 'solidus_content/content_providers/solidus_static_content'

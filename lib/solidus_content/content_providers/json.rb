@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+require 'json'
+
 module SolidusContent::ContentProviders::JSON
   def self.call(input)
     dir = Rails.root.join(input.dig(:type_options, :path))
@@ -6,6 +10,4 @@ module SolidusContent::ContentProviders::JSON
   
     input.merge(data: data)
   end
-
-  SolidusContent.config.content_providers[:json] = self
 end

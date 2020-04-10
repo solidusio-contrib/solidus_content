@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+require 'contentful'
+
 module SolidusContent::ContentProviders::Contentful
   def self.call(input)
     type_options = input.dig(:type_options)
@@ -16,6 +20,4 @@ module SolidusContent::ContentProviders::Contentful
       provider_entry: entry,
     )
   end
-
-  SolidusContent.config.content_providers[:contentful] = self
 end
