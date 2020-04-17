@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require 'prismic'
-
 module SolidusContent::ContentProviders::Prismic
   def self.call(input)
+    require 'prismic' unless defined?(::Prismic)
+    
     type_options = input.dig(:type_options)
     entry_id = input.dig(:options, :id)
 
