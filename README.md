@@ -149,7 +149,7 @@ entry = SolidusContent::Entry.create(
 )
 ```
 
-```json
+```jsonc
 // [RAILS_ROOT]/data/posts/2020-03-27-hello-world.json
 {"title": "Hello World!", "body": "My first post!"}
 ```
