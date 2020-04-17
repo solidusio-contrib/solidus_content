@@ -3,7 +3,7 @@ class CreateSolidusContentEntryTypes < ActiveRecord::Migration[5.0]
     create_table :solidus_content_entry_types do |t|
       t.string :name, null: false
       t.json :options, null: false
-      t.string :content_provider_name, null: false
+      t.string :provider_name, null: false
 
       t.timestamps
     end

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 feature 'Render content with views' do
-  let(:post) { create(:entry_type, name: :post, content_provider_name: :raw) }
+  let(:post) { create(:entry_type, name: :post, provider_name: :raw) }
   let(:view_path) { Rails.root.join('app/views/spree/solidus_content/post.html.erb') }
   
   let!(:post_one) { create(:entry, slug: 'one', options: {title: "first post"}, entry_type: post)}
