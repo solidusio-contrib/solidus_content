@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module SolidusContent::ContentProviders::SolidusStaticContent
+module SolidusContent::Providers::SolidusStaticContent
   def self.call(input)
     slug = input.dig(:options, :slug) || input[:slug]
 

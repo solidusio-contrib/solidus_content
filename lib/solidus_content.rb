@@ -25,7 +25,7 @@ module SolidusContent
   end
 
   # This module will be the namespace for default providers
-  module ContentProviders
+  module Providers
   end
 
   # Register all the default providers

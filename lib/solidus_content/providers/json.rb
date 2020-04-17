@@ -2,7 +2,7 @@
 
 require 'json'
 
-module SolidusContent::ContentProviders::JSON
+module SolidusContent::Providers::JSON
   def self.call(input)
     dir = Rails.root.join(input.dig(:type_options, :path))
     file = dir.join(input[:slug] + '.json')

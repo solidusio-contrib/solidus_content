@@ -21,7 +21,7 @@ class SolidusContent::Configuration
   def register_content_provider(name, provider)
     if provider.is_a? Symbol
       require "solidus_content/content_providers/#{provider.to_s.underscore}"
-      provider = SolidusContent::ContentProviders.const_get(provider)
+      provider = SolidusContent::Providers.const_get(provider)
     end
     content_providers[name.to_sym] = provider
   end
