@@ -259,7 +259,7 @@ To register a content-provider, add a callable to the configuration under the
 name you prefer. The
 
 ```rb
-SolidusContent.config.register_content_providers :json, ->(input) {
+SolidusContent.config.register_provider :json, ->(input) {
   dir = Rails.root.join(input.dig(:type_options, :path))
   file = dir.join(input[:slug] + '.json')
   data = JSON.parse(file.read, symbolize_names: true)

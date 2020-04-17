@@ -4,11 +4,11 @@ SolidusContent.configure do |config|
   # You can control the list of content providers that will be available to the 
   # backend.
   # 
-  # config.content_providers.delete :prismic
+  # config.providers.delete :prismic
 
   # Define a custom content provider.
   # 
-  # config.register_content_provider :data_dir, ->(input) {
+  # config.register_provider :data_dir, ->(input) {
   #   data = YAML.load(Rails.root.join('data', input[:slug] + '.yml').read)
   #   input.merge(data: data)
   # }

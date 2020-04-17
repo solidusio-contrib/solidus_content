@@ -13,10 +13,10 @@ RSpec.describe SolidusContent::EntryType do
     let(:entry_type) { create(:entry_type, provider_name: provider_name) }
     let(:entry) { create(:entry, slug: :example, entry_type: entry_type, options: entry_options) }
 
-    shared_examples :content_provider do
+    shared_examples :provider do
       it 'calls the content-provider call method' do
         expect(
-          SolidusContent.config.content_providers[provider_name.to_sym]
+          SolidusContent.config.providers[provider_name.to_sym]
         ).to receive(:call).with(
           slug: entry.slug,
           type: entry_type.name,
@@ -34,7 +34,7 @@ RSpec.describe SolidusContent::EntryType do
       let(:entry_type_options) { {path: "#{FIXTURES_PATH}/content"} }
       let(:content) { {foo: "bar"} }
 
-      it_behaves_like :content_provider
+      it_behaves_like :provider
     end
 
     context 'with the RAW provider' do
@@ -42,21 +42,21 @@ RSpec.describe SolidusContent::EntryType do
       let(:entry_options) { {foo: "bar"} }
       let(:content) { {foo: "bar"} }
 
-      it_behaves_like :content_provider
+      it_behaves_like :provider
     end
 
     context 'with the solidus static content provider' do
       let(:provider_name) { 'solidus_static_content' }
       let(:content) { { foo: 'bar' } }
 
-      it_behaves_like :content_provider
+      it_behaves_like :provider
     end
 
     context 'with the Prismic provider' do
       let(:provider_name) { 'prismic' }
       let(:content) { { foo: 'bar' } }
 
-      it_behaves_like :content_provider
+      it_behaves_like :provider
     end
 
     context 'with an unknown provider' do

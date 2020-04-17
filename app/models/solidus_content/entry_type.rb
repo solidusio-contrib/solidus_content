@@ -3,7 +3,7 @@ class SolidusContent::EntryType < ActiveRecord::Base
   after_initialize { self.options ||= {} }
 
   def content_for(entry)
-    content_provider.call(
+    provider.call(
       slug: entry.slug,
       type: name,
       provider: provider_name,
@@ -12,7 +12,7 @@ class SolidusContent::EntryType < ActiveRecord::Base
     )
   end
 
-  def content_provider
-    SolidusContent.config.content_providers[provider_name.to_sym]
+  def provider
+    SolidusContent.config.providers[provider_name.to_sym]
   end
 end

@@ -29,10 +29,10 @@ module SolidusContent
   end
 
   # Register all the default providers
-  config.register_content_provider :json, :JSON
-  config.register_content_provider :raw, :RAW
-  config.register_content_provider :yaml, :YAML
-  config.register_content_provider :contentful, :Contentful
-  config.register_content_provider :prismic, :Prismic
-  config.register_content_provider :solidus_static_content, :SolidusStaticContent
+  config.register_provider :json, :JSON
+  config.register_provider :raw, :RAW
+  config.register_provider :yaml, :YAML
+  config.register_provider :contentful, :Contentful
+  config.register_provider :prismic, :Prismic
+  config.register_provider :solidus_static_content, :SolidusStaticContent
 end
