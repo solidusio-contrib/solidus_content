@@ -1,0 +1,46 @@
+<% admin_layout "full-width" %>
+
+<% admin_breadcrumb(plural_resource_name(SolidusContent::EntryType)) %>
+
+<% content_for :page_actions do %>
+  <li>
+    <%= link_to t(:new, scope: %i[spree admin entry_type]), new_admin_entry_type_url, class: 'btn btn-primary' %>
+  </li>
+<% end if can?(:create, SolidusContent::EntryType) %>
+
+<%= paginate @collection, theme: "solidus_admin" %>
+
+<% if @collection.any? %>
+  <table class="index" id="listing_entry_types">
+    <colgroup>
+       <col style="width: 50%;">
+       <col style="width: 50%;">
+    </colgroup>
+    <thead>
+      <tr data-hook="admin_products_index_headers">
+        <th><%= SolidusContent::EntryType.human_attribute_name(:name) %></th>
+        <th><%= SolidusContent::EntryType.human_attribute_name(:provider) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @collection.each do |request| %>
+        <tr id="<%= spree_dom_id request %>" data-hook="admin_entry_types_index_rows">
+          <td>
+            <%= request.name %>
+          </td>
+          <td>
+            <%= request.provider_name %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="no-objects-found">
+    <%= render 'spree/admin/shared/no_objects_found',
+      resource: SolidusContent::EntryType,
+      new_resource_url: new_admin_entry_type_url %>
+  </div>
+<% end %>
+
+<%= paginate @collection, theme: "solidus_admin" %>

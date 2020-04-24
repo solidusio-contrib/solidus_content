@@ -3,7 +3,9 @@
 module Spree
   module Admin
     class EntryTypesController < ResourceController
-      def index; end
+      def index
+        respond_with(@collection)
+      end
 
       protected
 
@@ -14,7 +16,7 @@ module Spree
       private
 
       def collection
-        @collection ||= SolidusContent::EntryType.all
+        @collection ||= SolidusContent::EntryType.page(params[:page] || 0)
       end
     end
   end

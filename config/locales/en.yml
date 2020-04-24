@@ -6,3 +6,5 @@ en:
     admin:
       tab:
         content: Content
+      entry_type:
+        new: New entry type

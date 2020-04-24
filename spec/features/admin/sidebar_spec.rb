@@ -3,8 +3,6 @@
 require 'spec_helper'
 
 describe 'Sidebar', :js do
-  include Warden::Test::Helpers
-
   let(:admin_user) { create(:admin_user) }
 
   before do

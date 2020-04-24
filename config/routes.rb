@@ -6,6 +6,6 @@ Spree::Core::Engine.routes.draw do
   end
 
   namespace :admin do
-    resources :entry_types, only: %w[index]
+    resources :entry_types, only: %w[index new]
   end
 end
