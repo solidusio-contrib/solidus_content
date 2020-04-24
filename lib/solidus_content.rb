@@ -26,13 +26,13 @@ module SolidusContent
 
   # This module will be the namespace for default providers
   module ContentProviders
-    extend ActiveSupport::Autoload
-
-    autoload :JSON
-    autoload :RAW
-    autoload :YAML
-    autoload :Contentful
-    autoload :Prismic
-    autoload :SolidusStaticContent
   end
+
+  # Register all the default providers
+  config.register_content_provider :json, :JSON
+  config.register_content_provider :raw, :RAW
+  config.register_content_provider :yaml, :YAML
+  config.register_content_provider :contentful, :Contentful
+  config.register_content_provider :prismic, :Prismic
+  config.register_content_provider :solidus_static_content, :SolidusStaticContent
 end

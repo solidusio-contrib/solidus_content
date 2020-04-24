@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require 'contentful'
-
 module SolidusContent::ContentProviders::Contentful
   def self.call(input)
+    require 'contentful' unless defined?(::Contentful)
+
     type_options = input.dig(:type_options)
     entry_id = input.dig(:options, :entry_id)
 
-    client = Contentful::Client.new(
+    client = ::Contentful::Client.new(
       space: type_options[:contentful_space_id],
       access_token: type_options[:contentful_access_token],
     )
