@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module SolidusContent::ContentProviders::Prismic
+module SolidusContent::Providers::Prismic
   def self.call(input)
     require 'prismic' unless defined?(::Prismic)
     

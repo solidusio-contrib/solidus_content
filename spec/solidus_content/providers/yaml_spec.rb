@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe SolidusContent::ContentProviders::YAML do
+RSpec.describe SolidusContent::Providers::YAML do
   let(:path) { File.absolute_path('content', FIXTURE_PATH) }
 
   context "when the yml extension isn't available" do

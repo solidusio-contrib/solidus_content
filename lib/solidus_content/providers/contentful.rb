@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module SolidusContent::ContentProviders::Contentful
+module SolidusContent::Providers::Contentful
   def self.call(input)
     require 'contentful' unless defined?(::Contentful)
 

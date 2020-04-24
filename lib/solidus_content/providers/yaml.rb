@@ -2,7 +2,7 @@
 
 require 'yaml'
 
-module SolidusContent::ContentProviders::YAML
+module SolidusContent::Providers::YAML
   def self.call(input)
     dir = Rails.root.join(input.dig(:type_options, :path))
     file = dir.join(input[:slug] + '.yml')

@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe SolidusContent::ContentProviders::Prismic do
+RSpec.describe SolidusContent::Providers::Prismic do
   describe '.call' do
     subject do
       described_class.call(

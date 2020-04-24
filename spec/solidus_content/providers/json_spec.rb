@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe SolidusContent::ContentProviders::JSON do
+RSpec.describe SolidusContent::Providers::JSON do
   context "with an absolute path" do
     let(:path) { File.absolute_path('content', FIXTURE_PATH) }
 

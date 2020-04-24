@@ -3,16 +3,16 @@ class SolidusContent::EntryType < ActiveRecord::Base
   after_initialize { self.options ||= {} }
 
   def content_for(entry)
-    content_provider.call(
+    provider.call(
       slug: entry.slug,
       type: name,
-      provider: content_provider_name,
+      provider: provider_name,
       options: entry.options.symbolize_keys,
       type_options: options.symbolize_keys,
     )
   end
 
-  def content_provider
-    SolidusContent.config.content_providers[content_provider_name.to_sym]
+  def provider
+    SolidusContent.config.providers[provider_name.to_sym]
   end
 end

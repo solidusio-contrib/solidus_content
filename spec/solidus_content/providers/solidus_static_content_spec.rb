@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe SolidusContent::ContentProviders::SolidusStaticContent do
+RSpec.describe SolidusContent::Providers::SolidusStaticContent do
   let(:page) { create(:page) }
 
   context 'passing the slug in the options' do

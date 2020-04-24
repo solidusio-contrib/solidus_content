@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe SolidusContent::ContentProviders::Contentful do
+RSpec.describe SolidusContent::Providers::Contentful do
   describe '.call' do
     subject do
       described_class.call(

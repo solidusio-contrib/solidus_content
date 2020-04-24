@@ -27,7 +27,7 @@ Create an entry type for the home page:
 ```rb
 home_entry_type = SolidusContent::EntryType.create!(
   name: :home,
-  content_provider_name: :json,
+  provider_name: :json,
   options: { path: 'data/home' }
 )
 ```
@@ -117,7 +117,7 @@ options.
 ```rb
 posts = SolidusContent::EntryType.create(
   name: 'posts',
-  content_provider_name: 'raw',
+  provider_name: 'raw',
 )
 entry = SolidusContent::Entry.create(
   slug: '2020-03-27-hello-world',
@@ -134,7 +134,7 @@ Will fetch the data from a JSON file within the directory specified by the
 ```rb
 posts = SolidusContent::EntryType.create(
   name: 'posts',
-  content_provider_name: 'json',
+  provider_name: 'json',
   options: {path: 'data/posts'}
 )
 entry = SolidusContent::Entry.create(
@@ -160,7 +160,7 @@ If there isn't a file with the `yml` extension, the `yaml` extension will be tri
 ```rb
 posts = SolidusContent::EntryType.create(
   name: 'posts',
-  content_provider_name: 'yaml',
+  provider_name: 'yaml',
   options: {path: 'data/posts'}
 )
 entry = SolidusContent::Entry.create(
@@ -186,7 +186,7 @@ If the page slug is the same of the entry one, we can avoid passing the options.
 ```rb
 posts = SolidusContent::EntryType.create(
   name: 'posts',
-  content_provider_name: 'solidus_static_content'
+  provider_name: 'solidus_static_content'
 )
 
 entry = SolidusContent::Entry.create!(
@@ -208,7 +208,7 @@ Will fetch the data from Contentful passing the `entry_id` entry option.
 ```rb
 posts = SolidusContent::EntryType.create(
   name: 'posts',
-  content_provider_name: 'contentful',
+  provider_name: 'contentful',
   options: {
     contentful_space_id: 'XXX',
     contentful_access_token: 'XXX'
@@ -236,7 +236,7 @@ Will fetch the data from Prismic passing the `id` entry option.
 ```rb
 posts = SolidusContent::EntryType.create(
   name: 'posts',
-  content_provider_name: 'prismic',
+  provider_name: 'prismic',
   options: {
     api_entry_point: 'XXX',
     api_token: 'XXX' # Only if the repository is private
@@ -259,7 +259,7 @@ To register a content-provider, add a callable to the configuration under the
 name you prefer. The
 
 ```rb
-SolidusContent.config.register_content_providers :json, ->(input) {
+SolidusContent.config.register_provider :json, ->(input) {
   dir = Rails.root.join(input.dig(:type_options, :path))
   file = dir.join(input[:slug] + '.json')
   data = JSON.parse(file.read, symbolize_names: true)
