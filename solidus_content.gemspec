@@ -24,9 +24,9 @@ Gem::Specification.new do |spec|
 
   spec.files = files.grep_v(%r{^(test|spec|features)/})
   spec.test_files = files.grep(%r{^(test|spec|features)/})
-  spec.bindir = "exe"
+  spec.bindir = 'exe'
   spec.executables = files.grep(%r{^exe/}) { |f| File.basename(f) }
-  spec.require_paths = ["lib"]
+  spec.require_paths = ['lib']
 
   spec.add_dependency 'solidus_core', ['>= 2.0.0', '< 3']
   spec.add_dependency 'solidus_support', '~> 0.4.0'
