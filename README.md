@@ -1,6 +1,8 @@
 SolidusContent
 ==============
 
+[![nebulab](https://circleci.com/gh/nebulab/solidus_content.svg?style=shield)](https://app.circleci.com/pipelines/github/nebulab/solidus_content)
+
 Introduction goes here.
 
 Installation
