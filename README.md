@@ -68,13 +68,13 @@ E.g. `app/views/spree/solidus_content/home.html.erb`:
 <h1><%= data[:title] %></h1>
 ```
 
-Then, visit `/c/home/default` or even just `/c/home` (when the content slug is 
+Then, visit `/c/home/default` or even just `/c/home` (when the content slug is
 "default" it can be omitted).
 
 
 ### With a custom route
 
-You can also define a custom route and use the SolidusContent controller to 
+You can also define a custom route and use the SolidusContent controller to
 render your content from a dedicated view:
 
 ```rb
