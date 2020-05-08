@@ -1,0 +1,19 @@
+<% admin_breadcrumb link_to(plural_resource_name(SolidusContent::EntryType), spree.admin_entry_types_path) %>
+<% admin_breadcrumb t('new', scope: %w[spree admin entry_type]) %>
+
+<%= render 'spree/shared/error_messages', target: @object %>
+
+<%= form_for [:admin, @object], method: :post, url: admin_entry_types_path do |form| %>
+  <fieldset data-hook="new_entry_type">
+    <legend align="center">
+      <%= t('new', scope: %w[spree admin entry_type]) %>
+    </legend>
+
+    <%= render 'form', form: form %>
+
+    <div class="form-buttons filter-actions actions" data-hook="buttons">
+      <%= submit_tag t('spree.actions.create'), class: 'btn btn-primary' %>
+      <%= link_to t('spree.actions.cancel'), admin_entry_types_path, class: 'button' %>
+    </div>
+  </fieldset>
+<% end %>

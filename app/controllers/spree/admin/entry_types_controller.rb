@@ -18,6 +18,14 @@ module Spree
       def collection
         @collection ||= SolidusContent::EntryType.page(params[:page] || 0)
       end
+
+      def permitted_resource_params
+        params.require(:solidus_content_entry_type).permit(:name, :provider_name)
+      end
+
+      def location_after_save
+        admin_entry_types_path
+      end
     end
   end
 end

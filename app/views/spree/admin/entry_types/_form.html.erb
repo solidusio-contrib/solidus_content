@@ -1,0 +1,21 @@
+<div data-hook="admin_entry_type_form_fields">
+<div class="row">
+  <div class="left col-12" data-hook="admin_entry_type_form">
+    <div class="row">
+      <div class="col-6" data-hook="admin_entry_type_form_name">
+        <%= form.field_container :user do %>
+          <%= form.label :name, SolidusContent::EntryType.human_attribute_name(:name), class: 'required' %><br />
+          <%= form.text_field :name, class: 'fullwidth' %>
+        <% end %>
+      </div>
+
+      <div class="col-6" data-hook="admin_entry_type_form_provider">
+        <%= form.field_container :provider_name do %>
+          <%= form.label :provider_name, SolidusContent::EntryType.human_attribute_name(:provider_name), class: 'required' %><br />
+          <%= form.select :provider_name, SolidusContent.config.providers.keys, { include_blank: false }, { class: 'custom-select fullwidth' } %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
