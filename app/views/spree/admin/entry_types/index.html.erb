@@ -23,13 +23,17 @@
       </tr>
     </thead>
     <tbody>
-      <% @collection.each do |request| %>
-        <tr id="<%= spree_dom_id request %>" data-hook="admin_entry_types_index_rows">
+      <% @collection.each do |entry_type| %>
+        <tr id="<%= spree_dom_id entry_type %>" data-hook="admin_entry_types_index_rows">
           <td>
-            <%= request.name %>
+            <%= entry_type.name %>
           </td>
           <td>
-            <%= request.provider_name %>
+            <%= entry_type.provider_name %>
+          </td>
+          <td class="actions" data-hook="admin_entry_types_index_row_actions">
+            <%= link_to_delete entry_type, url: admin_entry_type_url(entry_type),
+              class: 'trash delete-entry-type' if can?(:destroy, entry_type) %>
           </td>
         </tr>
       <% end %>

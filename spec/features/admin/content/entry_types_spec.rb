@@ -30,4 +30,18 @@ describe 'Entry types', :js do
       expect(page).to have_selector('[data-hook="admin_entry_types_index_rows"]', count: 25)
     end
   end
+
+  describe 'Delete entry type', :js do
+    before do
+      create(:entry_type)
+
+      visit spree.admin_entry_types_path
+    end
+
+    it 'deletes entry type' do
+      expect {
+        find('.delete-entry-type').click
+      }.to change(SolidusContent::EntryType, :count).from(1).to(0)
+    end
+  end
 end
