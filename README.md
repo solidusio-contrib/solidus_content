@@ -37,8 +37,8 @@ home_entry_type = SolidusContent::EntryType.create!(
 Create a default entry for the home page:
 
 ```rb
-home = SolidusContent.create!(
-  content_type: home_entry_type,
+home = SolidusContent::Entry.create!(
+  entry_type: home_entry_type,
   slug: :default,
 )
 ```
