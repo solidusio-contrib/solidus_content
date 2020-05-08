@@ -27,6 +27,7 @@ end
 gem 'contentful'
 gem 'prismic.io', require: 'prismic'
 gem 'solidus_static_content', github: 'solidusio-contrib/solidus_static_content'
+gem 'alchemy_cms', github: 'AlchemyCMS/alchemy_cms'
 
 gemspec
 

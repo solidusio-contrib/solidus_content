@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "active_support/dependencies/autoload"
+require 'active_support/dependencies/autoload'
 
 require 'solidus_core'
 require 'solidus_support'
@@ -35,4 +35,5 @@ module SolidusContent
   config.register_provider :contentful, :Contentful
   config.register_provider :prismic, :Prismic
   config.register_provider :solidus_static_content, :SolidusStaticContent
+  config.register_provider :alchemy, :Alchemy
 end

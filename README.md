@@ -68,13 +68,13 @@ E.g. `app/views/spree/solidus_content/home.html.erb`:
 <h1><%= data[:title] %></h1>
 ```
 
-Then, visit `/c/home/default` or even just `/c/home` (when the content slug is 
+Then, visit `/c/home/default` or even just `/c/home` (when the content slug is
 "default" it can be omitted).
 
 
 ### With a custom route
 
-You can also define a custom route and use the SolidusContent controller to 
+You can also define a custom route and use the SolidusContent controller to
 render your content from a dedicated view:
 
 ```rb
@@ -251,6 +251,29 @@ entry = SolidusContent::Entry.create!(
 ```
 
 _Be sure to have added `gem "prismic.io"` to your Gemfile._
+
+### AlchemyCMS
+
+Will fetch the data from an [AlchemyCMS](https://github.com/AlchemyCMS/alchemy_cms) page passing the `slug` entry option.
+
+You can also filter the elements to include with the page by passing `only` and `except` with the `options` hash. _Note: It will return all elements from that page if omitted._
+
+All element finder options are supported. Please have a look into [its documentation](https://github.com/AlchemyCMS/alchemy_cms/blob/master/lib/alchemy/elements_finder.rb) for available options.
+
+```rb
+pages = SolidusContent::EntryType.create(
+  name: 'pages',
+  provider_name: 'alchemy'
+)
+
+entry = SolidusContent::Entry.create!(
+  slug: 'hello/world',
+  entry_type: pages,
+  options: { only: 'article' }
+)
+```
+
+_Be sure to have `gem "alchemy_cms"` added to your `Gemfile`._
 
 Registering a content provider
 ==============================
