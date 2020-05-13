@@ -127,7 +127,7 @@ posts = SolidusContent::EntryType.create(
 entry = SolidusContent::Entry.create(
   slug: '2020-03-27-hello-world',
   entry_type: posts,
-  options: {title: "Hello World!", body: "My first post!"}
+  options: { title: "Hello World!", body: "My first post!" }
 )
 ```
 
@@ -140,7 +140,7 @@ Will fetch the data from a JSON file within the directory specified by the
 posts = SolidusContent::EntryType.create(
   name: 'posts',
   provider_name: 'json',
-  options: {path: 'data/posts'}
+  options: { path: 'data/posts' }
 )
 entry = SolidusContent::Entry.create(
   slug: '2020-03-27-hello-world',
@@ -166,7 +166,7 @@ If there isn't a file with the `yml` extension, the `yaml` extension will be tri
 posts = SolidusContent::EntryType.create(
   name: 'posts',
   provider_name: 'yaml',
-  options: {path: 'data/posts'}
+  options: { path: 'data/posts' }
 )
 entry = SolidusContent::Entry.create(
   slug: '2020-03-27-hello-world',
