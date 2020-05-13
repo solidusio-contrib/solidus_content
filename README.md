@@ -1,3 +1,4 @@
+
 SolidusContent
 ==============
 
@@ -76,21 +77,23 @@ Then, visit `/c/home/default` or even just `/c/home` (when the content slug is
 
 ### With a custom route
 
-You can also define a custom route and use the SolidusContent controller to
-render your content from a dedicated view:
+You can also define a custom route in your `Application` routes file and use
+the `SolidusContent` controller to render your content from a dedicated view:
 
 ```rb
 # config/routes.rb
-Spree::Core::Engine.routes.draw do
+Rails.application.routes.draw do
   # Will render app/views/spree/solidus_content/home.html.erb
-  root to: 'solidus_content#show', type: :home, id: :default
+  root to: 'spree/solidus_content#show', type: :home, id: :default
 
   # Will render app/views/spree/solidus_content/info.html.erb
-  get "privacy", to: 'solidus_content#show', type: :info, id: :privacy
-  get "legal", to: 'solidus_content#show', type: :info, id: :legal
+  get "privacy", to: 'spree/solidus_content#show', type: :info, id: :privacy
+  get "legal", to: 'spree/solidus_content#show', type: :info, id: :legal
 
-  # Will render app/views/spree/solidus_content/info.html.erb
-  get "blog/:id", to: 'solidus_content#show', type: :post
+  # Will render app/views/spree/solidus_content/post.html.erb
+  get "blog/:id", to: 'spree/solidus_content#show', type: :post
+
+  mount Spree::Core::Engine, at: '/'
 end
 ```
 
