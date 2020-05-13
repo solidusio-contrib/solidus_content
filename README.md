@@ -54,7 +54,7 @@ And then write a file inside your app root under `data/home/default.json`:
 Use the content inside an existing view, e.g. `app/views/spree/home/index.html.erb`:
 
 ```erb
-<% data = SolidusContent::Entry.data_for(:home, :default) %>
+<% data = SolidusContent::EntryType.find_by(name: 'home').entries.find_by(slug: 'default').data %>
 
 <h1><%= data[:title] %></h1>
 ```
