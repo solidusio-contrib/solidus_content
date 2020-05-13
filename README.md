@@ -67,7 +67,7 @@ be able to render your content.
 
 E.g. `app/views/spree/solidus_content/home.html.erb`:
 ```erb
-<h1><%= data[:title] %></h1>
+<h1><%= @data[:title] %></h1>
 ```
 
 Then, visit `/c/home/default` or even just `/c/home` (when the content slug is
