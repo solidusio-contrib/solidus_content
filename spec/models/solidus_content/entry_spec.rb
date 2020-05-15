@@ -9,10 +9,21 @@ RSpec.describe SolidusContent::Entry do
     expect(entry).to be_valid
   end
 
+  describe "#data_for" do
+    let(:post) { create(:entry_type, name: :post, provider_name: :raw) }
+    let!(:post_one) { create(:entry, slug: 'one', options: {title: "first post"}, entry_type: post)}
+
+    it "returns data for type and slug" do
+      expect(
+        SolidusContent::Entry.data_for(:post, 'one')
+      ).to eq({title: "first post"})
+    end
+  end
+
   specify '#data' do
     expect(entry.entry_type)
-      .to receive(:content_for).with(entry) .and_return({data: :foo})
-      
+      .to receive(:content_for).with(entry).and_return({data: :foo})
+
     expect(entry.data).to eq(:foo)
   end
 
