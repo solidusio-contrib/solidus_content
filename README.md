@@ -1,3 +1,4 @@
+
 SolidusContent
 ==============
 
@@ -54,7 +55,7 @@ And then write a file inside your app root under `data/home/default.json`:
 Use the content inside an existing view, e.g. `app/views/spree/home/index.html.erb`:
 
 ```erb
-<% data = SolidusContent::Entry.data_for(:home, :default) %>
+<% data = SolidusContent::EntryType.find_by(name: 'home').entries.find_by(slug: 'default').data %>
 
 <h1><%= data[:title] %></h1>
 ```
@@ -67,7 +68,7 @@ be able to render your content.
 
 E.g. `app/views/spree/solidus_content/home.html.erb`:
 ```erb
-<h1><%= data[:title] %></h1>
+<h1><%= @data[:title] %></h1>
 ```
 
 Then, visit `/c/home/default` or even just `/c/home` (when the content slug is
@@ -76,21 +77,23 @@ Then, visit `/c/home/default` or even just `/c/home` (when the content slug is
 
 ### With a custom route
 
-You can also define a custom route and use the SolidusContent controller to
-render your content from a dedicated view:
+You can also define a custom route in your `Application` routes file and use
+the `SolidusContent` controller to render your content from a dedicated view:
 
 ```rb
 # config/routes.rb
-Spree::Core::Engine.routes.draw do
+Rails.application.routes.draw do
   # Will render app/views/spree/solidus_content/home.html.erb
-  root to: 'solidus_content#show', type: :home, id: :default
+  root to: 'spree/solidus_content#show', type: :home, id: :default
 
   # Will render app/views/spree/solidus_content/info.html.erb
-  get "privacy", to: 'solidus_content#show', type: :info, id: :privacy
-  get "legal", to: 'solidus_content#show', type: :info, id: :legal
+  get "privacy", to: 'spree/solidus_content#show', type: :info, id: :privacy
+  get "legal", to: 'spree/solidus_content#show', type: :info, id: :legal
 
-  # Will render app/views/spree/solidus_content/info.html.erb
-  get "blog/:id", to: 'solidus_content#show', type: :post
+  # Will render app/views/spree/solidus_content/post.html.erb
+  get "blog/:id", to: 'spree/solidus_content#show', type: :post
+
+  mount Spree::Core::Engine, at: '/'
 end
 ```
 
@@ -124,7 +127,7 @@ posts = SolidusContent::EntryType.create(
 entry = SolidusContent::Entry.create(
   slug: '2020-03-27-hello-world',
   entry_type: posts,
-  options: {title: "Hello World!", body: "My first post!"}
+  options: { title: "Hello World!", body: "My first post!" }
 )
 ```
 
@@ -137,7 +140,7 @@ Will fetch the data from a JSON file within the directory specified by the
 posts = SolidusContent::EntryType.create(
   name: 'posts',
   provider_name: 'json',
-  options: {path: 'data/posts'}
+  options: { path: 'data/posts' }
 )
 entry = SolidusContent::Entry.create(
   slug: '2020-03-27-hello-world',
@@ -163,7 +166,7 @@ If there isn't a file with the `yml` extension, the `yaml` extension will be tri
 posts = SolidusContent::EntryType.create(
   name: 'posts',
   provider_name: 'yaml',
-  options: {path: 'data/posts'}
+  options: { path: 'data/posts' }
 )
 entry = SolidusContent::Entry.create(
   slug: '2020-03-27-hello-world',
