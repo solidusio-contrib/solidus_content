@@ -257,6 +257,50 @@ entry = SolidusContent::Entry.create!(
 
 _Be sure to have added `gem "prismic.io"` to your Gemfile._
 
+### Renderful
+
+The [Renderful](https://github.com/nebulab/renderful) provider works a bit differently from other
+providers because of how Renderful is configured.
+
+The provider is not registered by default, and you'll have to register it manually by passing your
+Renderful instance:
+
+```ruby
+# [RAILS_ROOT]/config/initializers/solidus_content.rb
+ 
+require 'solidus_content/providers/renderful'
+
+renderful = Renderful::Client.new(...)
+
+SolidusContent.config.register_provider(
+  :renderful_contentful,
+  SolidusContent::Providers::Renderful.new(renderful),
+)
+```
+
+Once configured, you'll be able to use it like all other providers:
+
+```ruby
+posts = SolidusContent::EntryType.create(
+  name: 'posts',
+  provider_name: 'renderful_contentful',
+)
+
+entry = SolidusContent::Entry.create!(
+  slug: '2020-03-27-hello-world',
+  entry_type: posts,
+  options: { id: 'XXX' }
+)
+```
+
+*Unlike other providers,* however, Renderful will not pass the raw entity fields to your view.
+Instead, you will get a `:render_in` proc that you should call with your view context. The call
+will be forwarded to Renderful, which will render your content:
+
+```erb
+<%= @data[:render_in].(self) %>
+```
+
 Registering a content provider
 ==============================
 
