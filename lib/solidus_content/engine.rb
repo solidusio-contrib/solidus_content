@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'spree/core'
+require 'solidus_content'
 
 module SolidusContent
   class Engine < Rails::Engine
