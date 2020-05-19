@@ -5,7 +5,7 @@ class Spree::SolidusContentController < Spree::StoreController
     slug = params[:id] || :default
     entry_type_name = params[:type]
 
-    @entry = ::SolidusContent::Entry.get(entry_type_name, slug)
+    @entry = ::SolidusContent::Entry.by_type(entry_type_name).by_slug(slug)
     render action: entry_type_name
   end
 end
