@@ -68,4 +68,22 @@ RSpec.describe SolidusContent::EntryType do
       end
     end
   end
+
+  describe '.by_name' do
+    let!(:home) { create(:entry_type, name: :home, provider_name: :raw) }
+
+    context "with existing name" do
+      it "returns the entry_type" do
+        expect(SolidusContent::EntryType.by_name(:home)).to eql home
+      end
+    end
+
+    context "with non-existing name" do
+      it "will raise an ActiveRecord::RecordNotFound exception" do
+        expect{
+          SolidusContent::EntryType.by_name(:post)
+        }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+  end
 end
