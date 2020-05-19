@@ -6,8 +6,12 @@ class SolidusContent::Entry < ActiveRecord::Base
 
   scope :by_slug, ->(slug) { find_by!(slug: slug) }
 
-  def self.data_for(entry_type, slug)
-    SolidusContent::EntryType.find_by!(name: entry_type).entries.by_slug(slug).data
+  def self.data_for(entry_type_name, slug)
+    get(entry_type_name, slug).data
+  end
+
+  def self.get(entry_type_name, slug)
+    SolidusContent::EntryType.by_type_name(entry_type_name).entries.by_slug(slug)
   end
 
   def data

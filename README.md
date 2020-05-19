@@ -68,7 +68,7 @@ be able to render your content.
 
 E.g. `app/views/spree/solidus_content/home.html.erb`:
 ```erb
-<h1><%= @data[:title] %></h1>
+<h1><%= @entry.data[:title] %></h1>
 ```
 
 Then, visit `/c/home/default` or even just `/c/home` (when the content slug is
@@ -298,7 +298,7 @@ Instead, you will get a `:render_in` proc that you should call with your view co
 will be forwarded to Renderful, which will render your content:
 
 ```erb
-<%= @data[:render_in].(self) %>
+<%= @entry.data[:render_in].(self) %>
 ```
 
 Registering a content provider

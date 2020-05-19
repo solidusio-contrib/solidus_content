@@ -3,14 +3,14 @@ require 'spec_helper'
 feature 'Render content with views' do
   let(:post) { create(:entry_type, name: :post, provider_name: :raw) }
   let(:view_path) { Rails.root.join('app/views/spree/solidus_content/post.html.erb') }
-  
+
   let!(:post_one) { create(:entry, slug: 'one', options: {title: "first post"}, entry_type: post)}
   let!(:post_two) { create(:entry, slug: 'two', options: {title: "second post"}, entry_type: post)}
 
   before { view_path.dirname.mkpath }
   after { view_path.delete }
 
-  background { view_path.write(%{<main><h1><%= @data[:title] %></h1></main>}) }
+  background { view_path.write(%{<main><h1><%= @entry.data[:title] %></h1></main>}) }
 
   scenario 'rendering posts as views' do
     visit '/c/post/one'
@@ -21,7 +21,7 @@ feature 'Render content with views' do
 
   context "when the default route is disabled" do
     scenario "it gives 404 when the default route is disabled" do
-      SolidusContent.config.skip_default_route = true 
+      SolidusContent.config.skip_default_route = true
       Rails.application.reload_routes!
       expect {visit '/c/post/one'}.to raise_error(ActionController::RoutingError)
 
