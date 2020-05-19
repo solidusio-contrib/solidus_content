@@ -55,7 +55,7 @@ And then write a file inside your app root under `data/home/default.json`:
 Use the content inside an existing view, e.g. `app/views/spree/home/index.html.erb`:
 
 ```erb
-<% data = SolidusContent::EntryType.find_by(name: 'home').entries.find_by(slug: 'default').data %>
+<% data = SolidusContent::Entry.data_for(:home, 'default') %>
 
 <h1><%= data[:title] %></h1>
 ```
@@ -267,7 +267,7 @@ Renderful instance:
 
 ```ruby
 # [RAILS_ROOT]/config/initializers/solidus_content.rb
- 
+
 require 'solidus_content/providers/renderful'
 
 renderful = Renderful::Client.new(...)
