@@ -13,10 +13,28 @@ RSpec.describe SolidusContent::Entry do
     let(:post) { create(:entry_type, name: :post, provider_name: :raw) }
     let!(:post_one) { create(:entry, slug: 'one', options: {title: "first post"}, entry_type: post)}
 
-    it "returns data for type and slug" do
-      expect(
-        SolidusContent::Entry.data_for(:post, 'one')
-      ).to eq({title: "first post"})
+    context "with using correct type and slug" do
+      it "returns data" do
+        expect(
+          SolidusContent::Entry.data_for(:post, 'one')
+        ).to eq({title: "first post"})
+      end
+    end
+
+    context "with using invalid type" do
+      it "will raise an ActiveRecord::RecordNotFound exception" do
+        expect{
+          SolidusContent::Entry.data_for(:foo, 'one')
+        }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+
+    context "with using an invalid slug" do
+      it "will raise an ActiveRecord::RecordNotFound exception" do
+        expect{
+          SolidusContent::Entry.data_for(:post, 'foo')
+        }.to raise_error(ActiveRecord::RecordNotFound)
+      end
     end
   end
 
