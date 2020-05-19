@@ -2,6 +2,8 @@ class SolidusContent::EntryType < ActiveRecord::Base
   has_many :entries
   after_initialize { self.options ||= {} }
 
+  validates :name, :provider_name, presence: true
+
   def content_for(entry)
     provider.call(
       slug: entry.slug,

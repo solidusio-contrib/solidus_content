@@ -3,6 +3,7 @@
 FactoryBot.define do
   factory :entry_type, class: SolidusContent::EntryType do
     sequence(:name) { |n| "entry_type_#{n}" }
+    provider_name { :json }
   end
 
   factory :entry, class: SolidusContent::Entry do
