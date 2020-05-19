@@ -2,6 +2,8 @@ class SolidusContent::EntryType < ActiveRecord::Base
   has_many :entries
   after_initialize { self.options ||= {} }
 
+  scope :by_type_name, ->(type_name) { find_by!(name: type_name) }
+
   validates :name, :provider_name, presence: true
 
   def content_for(entry)
