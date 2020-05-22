@@ -55,7 +55,7 @@ And then write a file inside your app root under `data/home/default.json`:
 Use the content inside an existing view, e.g. `app/views/spree/home/index.html.erb`:
 
 ```erb
-<% data = SolidusContent::EntryType.find_by(name: 'home').entries.find_by(slug: 'default').data %>
+<% data = SolidusContent::Entry.data_for(:home, 'default') %>
 
 <h1><%= data[:title] %></h1>
 ```
@@ -68,7 +68,7 @@ be able to render your content.
 
 E.g. `app/views/spree/solidus_content/home.html.erb`:
 ```erb
-<h1><%= @data[:title] %></h1>
+<h1><%= @entry.data[:title] %></h1>
 ```
 
 Then, visit `/c/home/default` or even just `/c/home` (when the content slug is
@@ -267,7 +267,7 @@ Renderful instance:
 
 ```ruby
 # [RAILS_ROOT]/config/initializers/solidus_content.rb
- 
+
 require 'solidus_content/providers/renderful'
 
 renderful = Renderful::Client.new(...)
@@ -298,7 +298,7 @@ Instead, you will get a `:render_in` proc that you should call with your view co
 will be forwarded to Renderful, which will render your content:
 
 ```erb
-<%= @data[:render_in].(self) %>
+<%= @entry.data[:render_in].(self) %>
 ```
 
 Registering a content provider
