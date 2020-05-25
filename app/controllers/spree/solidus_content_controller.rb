@@ -3,9 +3,9 @@ require_dependency 'solidus_content/entry_type'
 class Spree::SolidusContentController < Spree::StoreController
   def show
     slug = params[:id] || :default
-    entry_type_name = params[:type]
+    type = params[:type]
 
-    @entry = ::SolidusContent::Entry.by_type(entry_type_name).by_slug(slug)
-    render action: entry_type_name
+    @entry = ::SolidusContent::Entry.by_type(type).by_slug(slug)
+    render action: type
   end
 end

@@ -334,6 +334,64 @@ following keys:
 
 In both the input and output all keys should be symbolized.
 
+Connecting Webhooks
+===================
+
+Many content providers such as Contentful or Prismic can send payloads via webhooks when content changes, those can be very useful in a number of ways.
+
+We suggest using the [`solidus_webhooks`](http://github.com/solidusio-contrib/solidus_webhooks#readme) extension to get the most out of `solidus_content`, let's see some examples.
+
+Add this to your Gemfile:
+
+```rb
+gem "solidus_webhooks"
+```
+
+
+### Using Webhooks to Auto-Create entries
+
+In this example we setup a webhook that will create or update Contentful entries whenever they're changed or created.
+
+```rb
+# config/initializers/webhooks.rb
+
+SolidusWebhooks.config.register_webhook_handler :contentful, -> payload {
+  next unless payload.dig(:sys, :Type) == "Entry"
+  entry_type = SolidusContent::EntryType.find_or_create_by(
+    name: payload.dig(:sys, :ContentType, :sys, :id),
+    provider_name: :raw
+  )
+  entry = entry_type.entries.find_or_initialize_by(slug: payload.dig(:sys, :id))
+  entry.options = payload.fetch(:fields)
+}
+```
+
+### Using Webhooks to expire caches
+
+When caching the content of `app/views/spree/home/index.html.erb` as in this example:
+
+```erb
+<% cache(@entry) do %>
+  <h1><%= @entry.data[:title] %></h1>
+<% end %>
+```
+
+You may want to setup a webhook that will touch the entry every time it's modified:
+
+```rb
+# config/initializers/webhooks.rb
+
+SolidusWebhooks.config.register_webhook_handler :prismic, -> payload {
+  prismic_entry_types = SolidusContent::EntryType.where(provider_name: :prismic)
+
+  # Prismic doesn't give much informations about which entries have been changed,
+  # so we're touching them all.
+  SolidusContent::Entry.where(entry_type: prismic_entry_types).touch_all
+}
+```
+
+*NOTE: `touch_all` was introduced in Rails 6, for earlier versions use `find_each(&:touch)`.*
+
 Testing
 -------
 
