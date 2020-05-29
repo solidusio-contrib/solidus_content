@@ -10,7 +10,7 @@
 
     <div class="form-buttons filter-actions actions" data-hook="buttons">
       <%= submit_tag t('spree.actions.update'), class: 'btn btn-primary' %>
-      <%= link_to t('spree.actions.cancel'), admin_entry_type_path(@object), class: 'button' %>
+      <%= link_to t('spree.actions.cancel'), collection_url, class: 'button' %>
     </div>
   </fieldset>
 <% end %>

@@ -4,7 +4,7 @@
 
 <% content_for :page_actions do %>
   <li>
-    <%= link_to t(:new, scope: %i[spree admin entry_type]), new_admin_entry_type_url, class: 'btn btn-primary' %>
+    <%= link_to t('spree.admin.entry_type.new'), new_object_url, class: 'btn btn-primary' %>
   </li>
 <% end if can?(:create, model_class) %>
 
@@ -26,15 +26,15 @@
       <% @collection.each do |entry_type| %>
         <tr id="<%= spree_dom_id entry_type %>" data-hook="admin_entry_types_index_rows">
           <td>
-            <%= link_to entry_type.name, admin_entry_type_path(entry_type) %>
+            <%= link_to entry_type.name, object_url(entry_type) %>
           </td>
           <td>
             <%= entry_type.provider_name %>
           </td>
           <td class="actions" data-hook="admin_entry_types_index_row_actions">
-            <%= link_to_edit entry_type, url: edit_admin_entry_type_url(entry_type),
+            <%= link_to_edit entry_type, url: edit_object_url(entry_type),
               class: 'edit edit-entry-type' if can?(:update, entry_type) %>
-            <%= link_to_delete entry_type, url: admin_entry_type_url(entry_type),
+            <%= link_to_delete entry_type, url: object_url(entry_type),
               class: 'trash delete-entry-type' if can?(:destroy, entry_type) %>
           </td>
         </tr>
@@ -45,7 +45,7 @@
   <div class="no-objects-found">
     <%= render 'spree/admin/shared/no_objects_found',
       resource: model_class,
-      new_resource_url: new_admin_entry_type_url %>
+      new_resource_url: new_object_url %>
   </div>
 <% end %>
 
