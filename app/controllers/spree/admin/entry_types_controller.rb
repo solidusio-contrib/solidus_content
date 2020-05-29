@@ -5,6 +5,10 @@ module Spree
     class EntryTypesController < ResourceController
       helper_method :model_class
 
+      def show
+        redirect_to action: :edit
+      end
+
       protected
 
       def model_class
