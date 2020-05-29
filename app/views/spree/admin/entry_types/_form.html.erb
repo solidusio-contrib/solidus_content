@@ -8,7 +8,7 @@ end %>
     <div class="row">
       <div class="col-6" data-hook="admin_entry_type_form_name">
         <%= form.field_container :user do %>
-          <%= form.label :name, SolidusContent::EntryType.human_attribute_name(:name), class: 'required' %><br />
+          <%= form.label :name, class: 'required' %><br />
           <%= form.text_field :name, class: 'fullwidth' %>
         <% end %>
       </div>

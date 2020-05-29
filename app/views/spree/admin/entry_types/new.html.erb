@@ -1,5 +1,6 @@
-<% admin_breadcrumb link_to(plural_resource_name(SolidusContent::EntryType), spree.admin_entry_types_path) %>
-<% admin_breadcrumb t('new', scope: %w[spree admin entry_type]) %>
+<% admin_breadcrumb link_to(plural_resource_name(model_class), spree.admin_entry_types_path) %>
+<% admin_breadcrumb "#{t('spree.actions.new')} #{model_class.model_name.human}" %>
+
 
 <%= render 'spree/shared/error_messages', target: @object %>
 
