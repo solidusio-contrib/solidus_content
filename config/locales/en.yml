@@ -8,7 +8,17 @@ en:
         content: Content
       entry_type:
         new: New entry type
+  activerecord:
+    attributes:
+      solidus_content/entry_type:
+        provider_name: Provider
   solidus_content:
+    providers:
+      json: JSON
+      yaml: YAML
+      contentful: Contentful
+      prismic: Prismic
+      solidus_static_content: SolidusStaticContent
     hints:
       new_entry_type: |
         Use an entry-type to group content that shares the same structure.
