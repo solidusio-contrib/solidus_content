@@ -8,3 +8,9 @@ en:
         content: Content
       entry_type:
         new: New entry type
+  solidus_content:
+    hints:
+      new_entry_type: |
+        Use an entry-type to group content that shares the same structure.
+        For example a list of editorials that all have a title and a body should
+        belong to a single entry-type named "editorial".

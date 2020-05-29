@@ -6,6 +6,7 @@
 <%= form_for [:admin, @object], method: :post, url: admin_entry_types_path do |form| %>
   <fieldset data-hook="new_entry_type">
     <legend align="center">
+      <%= admin_hint nil, t('solidus_content.hints.new_entry_type') %>
       <%= t('new', scope: %w[spree admin entry_type]) %>
     </legend>
 
