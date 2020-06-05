@@ -40,7 +40,7 @@ describe 'Entry types', :js do
 
     it 'deletes entry type' do
       expect {
-        find('.delete-entry-type').click
+        accept_confirm { find('.delete-entry-type').click }
       }.to change(SolidusContent::EntryType, :count).from(1).to(0)
     end
   end
