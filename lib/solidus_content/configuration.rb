@@ -6,8 +6,8 @@ class SolidusContent::Configuration
   UnknownProvider = Class.new(StandardError)
 
   # Register of content-providers, use symbols for keys and callables as
-  # values. Each content-provider will be called passing the `entry_options:` 
-  # and `entry_type_options:`. 
+  # values. Each content-provider will be called passing the `entry_options:`
+  # and `entry_type_options:`.
   def providers
     @providers ||= Hash.new do |hash, key|
       raise UnknownProvider, "Can't find a provider for #{key.inspect}"
