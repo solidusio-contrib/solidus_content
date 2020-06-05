@@ -23,4 +23,8 @@ end %>
     </div>
   </div>
 </div>
+
+<% if form.object.provider_name_readonly? %>
+  <%= render "options_form", form: form %>
+<% end %>
 </div>

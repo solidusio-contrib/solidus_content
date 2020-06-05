@@ -31,7 +31,24 @@ class SolidusContent::EntryType < ActiveRecord::Base
     persisted?
   end
 
+  def serialized_options=(value)
+    self.options = json_serializer.deserialize(value)
+  end
+
+  def serialized_options
+    json_serializer.serialize(options)
+  end
+
+  def options
+    super || {}
+  end
+
   private
+
+  # Rely on the database type to get options in and out of strings.
+  def json_serializer
+    @json_serializer ||= ActiveRecord::Type::Json.new
+  end
 
   def ensure_provider_name_is_not_changed
     if provider_name_changed? && persisted?

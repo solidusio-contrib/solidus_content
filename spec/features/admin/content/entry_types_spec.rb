@@ -44,4 +44,17 @@ describe 'Entry types', :js do
       }.to change(SolidusContent::EntryType, :count).from(1).to(0)
     end
   end
+
+  describe 'Edit entry type', :js do
+    subject { create(:entry_type) }
+    before { visit spree.edit_admin_entry_type_path(subject) }
+
+    it 'can change the options' do
+      fill_in 'solidus_content_entry_type_serialized_options', with: '{"foo": "bar"}'
+
+      expect {
+        click_on 'Update'
+      }.to change { SolidusContent::EntryType.last.options }.from({}).to({"foo" => "bar"})
+    end
+  end
 end
