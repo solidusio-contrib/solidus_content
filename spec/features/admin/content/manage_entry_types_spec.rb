@@ -34,7 +34,6 @@ RSpec.describe "Manage entry types" do
   end
 
   describe 'Create entry type', :js do
-
     before { visit spree.new_admin_entry_type_path }
 
     context 'with the correct information' do

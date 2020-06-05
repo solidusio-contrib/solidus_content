@@ -39,10 +39,6 @@ class SolidusContent::EntryType < ActiveRecord::Base
     json_serializer.serialize(options)
   end
 
-  def options
-    super || {}
-  end
-
   private
 
   # Rely on the database type to get options in and out of strings.

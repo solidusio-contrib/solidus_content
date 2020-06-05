@@ -25,6 +25,7 @@ en:
               readonly: "can't be changed"
   solidus_content:
     providers:
+      raw: Raw
       json: JSON
       yaml: YAML
       contentful: Contentful
