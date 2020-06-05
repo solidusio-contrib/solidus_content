@@ -17,6 +17,12 @@ en:
     attributes:
       solidus_content/entry_type:
         provider_name: Provider
+    errors:
+      models:
+        solidus_content/entry_type:
+          attributes:
+            provider_name:
+              readonly: "can't be changed"
   solidus_content:
     providers:
       json: JSON

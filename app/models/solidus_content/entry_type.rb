@@ -5,6 +5,7 @@ class SolidusContent::EntryType < ActiveRecord::Base
 
   validates :name, presence: true
   validates :provider_name, presence: true
+  validate :ensure_provider_name_is_not_changed
 
   after_initialize { self.options ||= {} }
 
@@ -24,5 +25,17 @@ class SolidusContent::EntryType < ActiveRecord::Base
 
   def provider
     SolidusContent.config.providers[provider_name.to_sym]
+  end
+
+  def provider_name_readonly?
+    persisted?
+  end
+
+  private
+
+  def ensure_provider_name_is_not_changed
+    if provider_name_changed? && persisted?
+      errors.add :provider_name, :readonly
+    end
   end
 end

@@ -17,7 +17,7 @@ end %>
         <%= form.field_container :provider_name do %>
           <%= form.field_hint :provider_name %>
           <%= form.label :provider_name, class: 'required' %><br />
-          <%= form.select :provider_name, provider_options, { include_blank: false }, { class: 'custom-select fullwidth' } %>
+          <%= form.select :provider_name, provider_options, { include_blank: false }, { disabled: form.object.provider_name_readonly?, class: 'custom-select fullwidth' } %>
         <% end %>
       </div>
     </div>
