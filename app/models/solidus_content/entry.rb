@@ -5,6 +5,8 @@ class SolidusContent::Entry < ActiveRecord::Base
 
   after_initialize { self.options ||= {} }
 
+  validates :slug, presence: true, uniqueness: {scope: :entry_type_id}
+
   scope :by_slug, ->(slug) { find_by!(slug: slug) }
   scope :by_type, ->(type) {
     unless type.is_a? SolidusContent::EntryType
