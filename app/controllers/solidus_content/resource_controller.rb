@@ -13,19 +13,19 @@ module SolidusContent
     end
 
     def new_object_url(options = {})
-      new_admin_entry_type_path(options)
+      send(:"new_admin_#{controller_name.singularize}_path", options)
     end
 
     def edit_object_url(object, options = {})
-      edit_admin_entry_type_path(object, options)
+      send(:"edit_admin_#{controller_name.singularize}_path", object, options)
     end
 
     def object_url(object = nil, options = {})
-      admin_entry_type_path((object || @object), options)
+      send(:"admin_#{controller_name.singularize}_path", object, options)
     end
 
     def collection_url(options = {})
-      admin_entry_types_path(options)
+      send(:"admin_#{controller_name}_path", options)
     end
   end
 end
