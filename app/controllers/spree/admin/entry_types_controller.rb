@@ -11,10 +11,6 @@ module Spree
 
       private
 
-      def collection
-        super.page(params[:page] || 0)
-      end
-
       def location_after_save
         edit_object_url(@object)
       end

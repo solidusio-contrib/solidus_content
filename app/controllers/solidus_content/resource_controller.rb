@@ -4,6 +4,10 @@ module SolidusContent
   class ResourceController < Spree::Admin::ResourceController
     private
 
+    def collection
+      super.page(params[:page] || 0)
+    end
+
     def model_class
       "SolidusContent::#{controller_name.classify}".constantize
     end
