@@ -1,0 +1,31 @@
+<% entry_type_options = SolidusContent::EntryType.pluck(:name, :id) %>
+
+<div data-hook="admin_entry_form_fields">
+  <div class="row">
+    <div class="left col-12" data-hook="admin_entry_form">
+      <div class="row">
+        <div class="col-6" data-hook="admin_entry_form_name">
+          <%= form.field_container :slug do %>
+            <%= form.field_hint :slug %>
+            <%= form.label :slug, class: 'required' %><br />
+            <%= form.text_field :slug, class: 'fullwidth' %>
+          <% end %>
+        </div>
+
+        <div class="col-6" data-hook="admin_entry_form_provider">
+          <%= form.field_container :entry_type_id do %>
+            <%= form.field_hint :entry_type_id %>
+            <%= form.label :entry_type_id, class: 'required' %><br />
+            <%= form.select :entry_type_id, entry_type_options, { include_blank: false }, { disabled: form.object.persisted?, class: 'custom-select fullwidth' } %>
+          <% end %>
+        </div>
+
+        <%= form.hidden_field :options, value: '{}' %>
+      </div>
+    </div>
+  </div>
+
+  <% if form.object.persisted? %>
+    <%= render "options_form", form: form %>
+  <% end %>
+</div>

@@ -2,7 +2,7 @@
 
 Spree::Backend::Config.configure do |config|
   config.menu_items << config.class::MenuItem.new(
-    [:entry_types],
+    [:entry_types, :entries],
     'text-width',
     condition: -> { can?(:admin, SolidusContent::EntryType) },
     label: :content,

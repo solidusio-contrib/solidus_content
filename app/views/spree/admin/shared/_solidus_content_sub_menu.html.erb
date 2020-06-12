@@ -2,4 +2,8 @@
   <% if can?(:admin, SolidusContent::EntryType) %>
     <%= tab :entry_types, url: spree.admin_entry_types_path %>
   <% end %>
+
+  <% if can?(:admin, SolidusContent::Entry) %>
+    <%= tab :entries, url: spree.admin_entries_path %>
+  <% end %>
 </ul>

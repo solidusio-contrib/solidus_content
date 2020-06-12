@@ -1,11 +1,15 @@
 # frozen_string_literal: true
 
 class SolidusContent::Entry < ActiveRecord::Base
+  extend SolidusContent::SerializedJsonAccessor
+
   belongs_to :entry_type
 
   after_initialize { self.options ||= {} }
 
   validates :slug, presence: true, uniqueness: {scope: :entry_type_id}
+
+  serialized_json_accessor_for :options
 
   scope :by_slug, ->(slug) { find_by!(slug: slug) }
   scope :by_type, ->(type) {

@@ -8,6 +8,7 @@ Spree::Core::Engine.routes.draw do
   namespace :admin do
     scope path: "content" do
       resources :entry_types, path: "types"
+      resources :entries
     end
   end
 end

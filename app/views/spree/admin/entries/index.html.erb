@@ -1,0 +1,53 @@
+<% admin_layout "full-width" %>
+
+<% admin_breadcrumb plural_resource_name(model_class) %>
+
+<% content_for :page_actions do %>
+  <li>
+    <%= link_to t('spree.admin.entry.new'), new_object_url, class: 'btn btn-primary' %>
+  </li>
+<% end if can?(:create, model_class) %>
+
+<%= paginate @collection, theme: "solidus_admin" %>
+
+<% if @collection.any? %>
+  <table class="index" id="listing_entries">
+    <colgroup>
+       <col style="width: 50%;">
+       <col style="width: 50%;">
+    </colgroup>
+    <thead>
+      <tr data-hook="admin_products_index_headers">
+        <th><%= model_class.human_attribute_name(:slug) %></th>
+        <th><%= model_class.human_attribute_name(:entry_type) %></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @collection.each do |entry| %>
+        <tr id="<%= spree_dom_id entry %>" data-hook="admin_entries_index_rows">
+          <td>
+            <%= link_to entry.slug, object_url(entry) %>
+          </td>
+          <td>
+            <%= link_to entry.entry_type.name, admin_entry_type_path(entry.entry_type) %>
+          </td>
+          <td class="actions" data-hook="admin_entries_index_row_actions">
+            <%= link_to_edit entry, url: edit_object_url(entry),
+              class: 'edit edit-entry' if can?(:update, entry) %>
+            <%= link_to_delete entry, url: object_url(entry),
+              class: 'trash delete-entry' if can?(:destroy, entry) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="no-objects-found">
+    <%= render 'spree/admin/shared/no_objects_found',
+      resource: model_class,
+      new_resource_url: new_object_url %>
+  </div>
+<% end %>
+
+<%= paginate @collection, theme: "solidus_admin" %>
