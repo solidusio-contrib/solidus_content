@@ -2,9 +2,11 @@
 
 Spree::Backend::Config.configure do |config|
   config.menu_items << config.class::MenuItem.new(
-    [:content],
+    [:entry_types],
     'text-width',
     condition: -> { can?(:admin, SolidusContent::EntryType) },
+    label: :content,
+    partial: 'spree/admin/shared/solidus_content_sub_menu',
     url: :admin_entry_types_path
   )
 end

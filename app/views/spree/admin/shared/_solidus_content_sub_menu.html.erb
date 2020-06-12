@@ -1,0 +1,5 @@
+<ul class="admin-subnav" data-hook="admin_settings_sub_tabs">
+  <% if can?(:admin, SolidusContent::EntryType) %>
+    <%= tab :entry_types, url: spree.admin_entry_types_path %>
+  <% end %>
+</ul>

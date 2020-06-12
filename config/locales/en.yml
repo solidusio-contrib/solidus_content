@@ -6,6 +6,7 @@ en:
     admin:
       tab:
         content: Content
+        entry_types: Types
       entry_type:
         new: New entry type
     hints:
