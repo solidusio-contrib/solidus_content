@@ -8,7 +8,7 @@ en:
         content: Content
         entry_types: Types
       entry_type:
-        new: New entry type
+        new: New type
     hints:
       solidus_content/entry_type:
         provider_name: |
