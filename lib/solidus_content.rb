@@ -22,6 +22,14 @@ module SolidusContent
     def configure
       yield config
     end
+
+    def provider_names
+      SolidusContent.config.providers.keys
+    end
+
+    def human_provider_name(name)
+      I18n.t("solidus_content.providers.#{name}")
+    end
   end
 
   # This module will be the namespace for default providers

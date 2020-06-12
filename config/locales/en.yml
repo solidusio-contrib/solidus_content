@@ -2,4 +2,37 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: Hello world
+  spree:
+    admin:
+      tab:
+        content: Content
+      entry_type:
+        new: New entry type
+    hints:
+      solidus_content/entry_type:
+        provider_name: |
+          The provider can only be selected during creation, once selected you
+          won't be able to change it.
+  activerecord:
+    attributes:
+      solidus_content/entry_type:
+        provider_name: Provider
+    errors:
+      models:
+        solidus_content/entry_type:
+          attributes:
+            provider_name:
+              readonly: "can't be changed"
+  solidus_content:
+    providers:
+      raw: Raw
+      json: JSON
+      yaml: YAML
+      contentful: Contentful
+      prismic: Prismic
+      solidus_static_content: SolidusStaticContent
+    hints:
+      new_entry_type: |
+        Use an entry-type to group content that shares the same structure.
+        For example a list of editorials that all have a title and a body should
+        belong to a single entry-type named "editorial".

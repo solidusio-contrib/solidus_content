@@ -1,0 +1,9 @@
+<fieldset class="no-border-bottom">
+  <legend><%= SolidusContent.human_provider_name(@entry_type.provider_name) %> <%= model_class.human_attribute_name(:options) %></legend>
+  <div class="row">
+    <div class="left col-12" data-hook="admin_entry_type_form">
+      <% rows = @entry_type.serialized_options.lines.size + 2 # leave two extra lines for new content %>
+      <%= form.text_area :serialized_options, class: 'fullwidth', rows: rows %>
+    </div>
+  </div>
+</fieldset>

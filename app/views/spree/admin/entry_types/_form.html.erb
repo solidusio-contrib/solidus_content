@@ -1,0 +1,32 @@
+<% provider_options = SolidusContent.provider_names.map do |name|
+  [SolidusContent.human_provider_name(name), name]
+end %>
+
+<div data-hook="admin_entry_type_form_fields">
+<div class="row">
+  <div class="left col-12" data-hook="admin_entry_type_form">
+    <div class="row">
+      <div class="col-6" data-hook="admin_entry_type_form_name">
+        <%= form.field_container :user do %>
+          <%= form.label :name, class: 'required' %><br />
+          <%= form.text_field :name, class: 'fullwidth' %>
+        <% end %>
+      </div>
+
+      <div class="col-6" data-hook="admin_entry_type_form_provider">
+        <%= form.field_container :provider_name do %>
+          <%= form.field_hint :provider_name %>
+          <%= form.label :provider_name, class: 'required' %><br />
+          <%= form.select :provider_name, provider_options, { include_blank: false }, { disabled: form.object.provider_name_readonly?, class: 'custom-select fullwidth' } %>
+        <% end %>
+      </div>
+
+      <%= form.hidden_field :options, value: '{}' %>
+    </div>
+  </div>
+</div>
+
+<% if form.object.provider_name_readonly? %>
+  <%= render "options_form", form: form %>
+<% end %>
+</div>

@@ -1,0 +1,21 @@
+<% admin_breadcrumb link_to(plural_resource_name(model_class), collection_url) %>
+<% admin_breadcrumb "#{t('spree.actions.new')} #{model_class.model_name.human}" %>
+
+
+<%= render 'spree/shared/error_messages', target: @object %>
+
+<%= form_for @object, url: collection_url do |form| %>
+  <fieldset data-hook="new_entry_type">
+    <legend align="center">
+      <%= admin_hint nil, t('solidus_content.hints.new_entry_type') %>
+      <%= t('new', scope: %w[spree admin entry_type]) %>
+    </legend>
+
+    <%= render 'form', form: form %>
+
+    <div class="form-buttons filter-actions actions" data-hook="buttons">
+      <%= submit_tag t('spree.actions.create'), class: 'btn btn-primary' %>
+      <%= link_to t('spree.actions.cancel'), collection_url, class: 'button' %>
+    </div>
+  </fieldset>
+<% end %>

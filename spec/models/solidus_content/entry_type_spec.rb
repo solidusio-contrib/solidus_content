@@ -86,4 +86,21 @@ RSpec.describe SolidusContent::EntryType do
       end
     end
   end
+
+  describe '#provider_name_readonly?' do
+    subject(:entry_type) { build(:entry_type) }
+
+    it 'ensures is not changed after creation' do
+      expect(subject.provider_name_readonly?).to eq(false)
+      expect(subject.valid?).to eq(true)
+
+      subject.save!
+      expect(subject.provider_name_readonly?).to eq(true)
+      expect(subject.valid?).to eq(true)
+
+      subject.provider_name = "foo"
+      expect(subject.provider_name_readonly?).to eq(true)
+      expect(subject.valid?).to eq(false)
+    end
+  end
 end

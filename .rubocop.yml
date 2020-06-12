@@ -5,3 +5,6 @@ AllCops:
   Exclude:
     - sandbox/**/*
     - spec/dummy/**/*
+
+RSpec/DescribeClass:
+  Enabled: false
