@@ -18,6 +18,8 @@ class SolidusContent::EntryType < ActiveRecord::Base
   after_initialize { self.options ||= {} }
   after_initialize :inject_provider_fields, if: :provider_name?
 
+  scope :by_name, ->(name) { find_by!(name: name) }
+
   def content_for(entry)
     provider_class.call(
       slug: entry.slug,
