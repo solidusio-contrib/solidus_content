@@ -13,13 +13,15 @@
 <% if @collection.any? %>
   <table class="index" id="listing_entry_types">
     <colgroup>
-       <col style="width: 50%;">
-       <col style="width: 50%;">
+       <col style="width: 40%;">
+       <col style="width: 40%;">
+       <col style="width: 20%;">
     </colgroup>
     <thead>
       <tr data-hook="admin_products_index_headers">
         <th><%= model_class.human_attribute_name(:name) %></th>
         <th><%= model_class.human_attribute_name(:provider) %></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>

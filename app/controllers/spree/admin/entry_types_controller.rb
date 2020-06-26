@@ -15,6 +15,10 @@ module Spree
         super.page(params[:page] || 0)
       end
 
+      def location_after_save
+        edit_object_url(@object)
+      end
+
       def permitted_resource_params
         params.require(:solidus_content_entry_type).permit(:name, :provider_name, :serialized_options)
       end
