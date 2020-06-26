@@ -3,6 +3,12 @@
 require 'spec_helper'
 
 RSpec.describe SolidusContent::Providers::Contentful do
+  describe '.fields' do
+    subject { described_class.fields }
+
+    it { is_expected.to eq(%i[contentful_space_id contentful_access_token]) }
+  end
+
   describe '.call' do
     subject do
       described_class.call(

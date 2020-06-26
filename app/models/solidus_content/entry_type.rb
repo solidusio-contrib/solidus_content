@@ -16,7 +16,7 @@ class SolidusContent::EntryType < ActiveRecord::Base
   after_initialize :inject_provider_fields, if: :provider_name?
 
   def content_for(entry)
-    provider.call(
+    provider_class.call(
       slug: entry.slug,
       type: name,
       provider: provider_name,
@@ -27,10 +27,6 @@ class SolidusContent::EntryType < ActiveRecord::Base
 
   def provider_class
     SolidusContent.config.providers[provider_name.to_sym]
-  end
-
-  def provider
-    provider_class.new(options)
   end
 
   def provider_name_readonly?

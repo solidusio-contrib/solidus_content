@@ -3,6 +3,12 @@
 require 'spec_helper'
 
 RSpec.describe SolidusContent::Providers::Prismic do
+  describe '.fields' do
+    subject { described_class.fields }
+
+    it { is_expected.to eq(%i[api_entry_point api_token]) }
+  end
+
   describe '.call' do
     subject do
       described_class.call(

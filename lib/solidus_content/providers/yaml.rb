@@ -17,7 +17,7 @@ module SolidusContent
         end
 
         def load(file)
-          YAML.load_file(file).symbolize_keys
+          ::YAML.load_file(file).symbolize_keys
         end
 
         def fields
