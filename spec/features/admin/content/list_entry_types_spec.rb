@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe 'List entry types' do
+RSpec.describe 'List entry types', :js do
   let(:admin_user) { create(:admin_user) }
 
   before { login_as admin_user }

@@ -3,8 +3,8 @@
 require 'spec_helper'
 
 RSpec.describe SolidusContent::Providers::Prismic do
-  describe '.fields' do
-    subject { described_class.fields }
+  describe '.entry_type_fields' do
+    subject { described_class.entry_type_fields }
 
     it { is_expected.to eq(%i[api_entry_point api_token]) }
   end

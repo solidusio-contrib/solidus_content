@@ -5,8 +5,8 @@ require 'spec_helper'
 RSpec.describe SolidusContent::Providers::YAML do
   let(:path) { File.absolute_path('content', FIXTURE_PATH) }
 
-  describe '.fields' do
-    subject { described_class.fields }
+  describe '.entry_type_fields' do
+    subject { described_class.entry_type_fields }
 
     it { is_expected.to eq(%i[path]) }
   end

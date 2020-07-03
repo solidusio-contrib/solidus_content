@@ -24,7 +24,7 @@ end %>
     </div>
   </div>
 
-  <% if form.object.provider_name_readonly? && @object.fields.count > 0 %>
+  <% if form.object.provider_name_readonly? && @object.entry_type_fields.count > 0 %>
     <%= render "options_form", form: form %>
   <% end %>
 </div>

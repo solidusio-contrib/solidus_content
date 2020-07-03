@@ -2,7 +2,6 @@
 
 class SolidusContent::EntryType < SolidusContent::ApplicationRecord
   include SolidusContent::Provider::Fields
-  extend SolidusContent::SerializedJsonAccessor
 
   has_many :entries, dependent: :destroy
 
@@ -12,8 +11,6 @@ class SolidusContent::EntryType < SolidusContent::ApplicationRecord
   validates :provider_name, presence: true
   validates :name, :provider_name, presence: true
   validate :ensure_provider_name_is_not_changed
-
-  serialized_json_accessor_for :options
 
   after_initialize { self.options ||= {} }
   after_initialize :inject_provider_fields, if: :provider_name?
@@ -38,16 +35,16 @@ class SolidusContent::EntryType < SolidusContent::ApplicationRecord
     persisted?
   end
 
-  def fields
+  def entry_type_fields
     return unless provider_name
 
-    provider_class.fields
+    provider_class.entry_type_fields
   end
 
   private
 
   def inject_provider_fields
-    provider_based_attr_reader(fields)
+    provider_based_attr_reader(entry_type_fields)
   end
 
   def ensure_provider_name_is_not_changed

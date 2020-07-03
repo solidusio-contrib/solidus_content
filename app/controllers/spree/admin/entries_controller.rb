@@ -12,7 +12,13 @@ module Spree
       private
 
       def permitted_resource_params
-        params.require(:solidus_content_entry).permit(:slub, :entry_type_id, :serialized_options)
+        params
+          .require(:solidus_content_entry)
+          .permit(:slug, :entry_type_id, *provider_params)
+      end
+
+      def provider_params
+        @object.entry_fields || []
       end
     end
   end

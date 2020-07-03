@@ -4,6 +4,10 @@ module SolidusContent
   class ResourceController < Spree::Admin::ResourceController
     private
 
+    def location_after_save
+      edit_object_url(@object)
+    end
+
     def collection
       super.page(params[:page] || 0)
     end

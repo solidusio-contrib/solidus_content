@@ -1,15 +1,14 @@
 # frozen_string_literal: true
 
 class SolidusContent::Entry < SolidusContent::ApplicationRecord
-  extend SolidusContent::SerializedJsonAccessor
+  include SolidusContent::Provider::Fields
 
   belongs_to :entry_type
 
   after_initialize { self.options ||= {} }
+  after_initialize :inject_entry_fields, if: :entry_type_id?
 
   validates :slug, presence: true, uniqueness: { scope: :entry_type_id }
-
-  serialized_json_accessor_for :options
 
   scope :by_slug, ->(slug) { find_by!(slug: slug) }
   scope :by_type, ->(type) {
@@ -29,5 +28,17 @@ class SolidusContent::Entry < SolidusContent::ApplicationRecord
 
   def content
     @content ||= entry_type.content_for(self)
+  end
+
+  def entry_fields
+    return unless entry_type_id?
+
+    entry_type.provider_class.entry_fields
+  end
+
+  private
+
+  def inject_entry_fields
+    provider_based_attr_reader(entry_fields)
   end
 end

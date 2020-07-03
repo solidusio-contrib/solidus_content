@@ -10,8 +10,12 @@ module SolidusContent
           input.merge(data: Spree::Page.find_by!(slug: slug).attributes.symbolize_keys)
         end
 
-        def fields
+        def entry_type_fields
           []
+        end
+
+        def entry_fields
+          %i[slug]
         end
       end
     end

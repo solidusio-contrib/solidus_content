@@ -6,9 +6,13 @@
   </legend>
 
   <div class="row">
-    <div class="left col-12" data-hook="admin_entry_form">
-      <% rows = @entry.serialized_options.lines.size + 2 # leave two extra lines for new content %>
-      <%= form.text_area :serialized_options, class: 'fullwidth', rows: rows %>
-    </div>
+    <% @entry.entry_fields.each do |field| %>
+      <div class="col-12" data-hook="admin_entry_<%= field %>">
+        <div class="field" id="solidus_content_entry_<%= field %>_field">
+          <%= form.label field %>
+          <%= form.text_field field, class: 'fullwidth' %>
+        </div>
+      </div>
+    <% end %>
   </div>
 </fieldset>

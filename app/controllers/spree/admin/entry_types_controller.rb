@@ -11,10 +11,6 @@ module Spree
 
       private
 
-      def location_after_save
-        edit_object_url(@object)
-      end
-
       def permitted_resource_params
         params
           .require(:solidus_content_entry_type)
@@ -22,7 +18,7 @@ module Spree
       end
 
       def provider_params
-        @object.fields || []
+        @object.entry_type_fields || []
       end
     end
   end
