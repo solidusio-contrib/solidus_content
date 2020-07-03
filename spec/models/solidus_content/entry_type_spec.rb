@@ -32,15 +32,15 @@ RSpec.describe SolidusContent::EntryType do
     context 'with the JSON provider' do
       let(:provider_name) { 'json' }
       let(:entry_type_options) { {path: "#{FIXTURES_PATH}/content"} }
-      let(:content) { {foo: "bar"} }
+      let(:content) { { foo: 'bar' } }
 
       it_behaves_like :provider
     end
 
     context 'with the RAW provider' do
       let(:provider_name) { 'raw' }
-      let(:entry_options) { {foo: "bar"} }
-      let(:content) { {foo: "bar"} }
+      let(:entry_options) { { foo: 'bar' } }
+      let(:content) { { foo: 'bar' } }
 
       it_behaves_like :provider
     end
@@ -72,14 +72,14 @@ RSpec.describe SolidusContent::EntryType do
   describe '.by_name' do
     let!(:home) { create(:entry_type, name: :home, provider_name: :raw) }
 
-    context "with existing name" do
-      it "returns the entry_type" do
+    context 'with existing name' do
+      it 'returns the entry_type' do
         expect(SolidusContent::EntryType.by_name(:home)).to eql home
       end
     end
 
-    context "with non-existing name" do
-      it "will raise an ActiveRecord::RecordNotFound exception" do
+    context 'with non-existing name' do
+      it 'will raise an ActiveRecord::RecordNotFound exception' do
         expect{
           SolidusContent::EntryType.by_name(:post)
         }.to raise_error(ActiveRecord::RecordNotFound)
@@ -98,7 +98,7 @@ RSpec.describe SolidusContent::EntryType do
       expect(subject.provider_name_readonly?).to eq(true)
       expect(subject.valid?).to eq(true)
 
-      subject.provider_name = "foo"
+      subject.provider_name = 'foo'
       expect(subject.provider_name_readonly?).to eq(true)
       expect(subject.valid?).to eq(false)
     end

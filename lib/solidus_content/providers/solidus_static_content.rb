@@ -1,9 +1,19 @@
 # frozen_string_literal: true
 
-module SolidusContent::Providers::SolidusStaticContent
-  def self.call(input)
-    slug = input.dig(:options, :slug) || input[:slug]
+module SolidusContent
+  module Providers
+    class SolidusStaticContent
+      class << self
+        def call(input)
+          slug = input.dig(:options, :slug) || input[:slug]
 
-    input.merge(data: Spree::Page.find_by!(slug: slug).attributes.symbolize_keys)
+          input.merge(data: Spree::Page.find_by!(slug: slug).attributes.symbolize_keys)
+        end
+
+        def fields
+          []
+        end
+      end
+    end
   end
 end

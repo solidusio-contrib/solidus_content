@@ -3,10 +3,16 @@
 require 'spec_helper'
 
 RSpec.describe SolidusContent::Providers::JSON do
-  context "with an absolute path" do
+  describe '.fields' do
+    subject { described_class.fields }
+
+    it { is_expected.to eq(%i[path]) }
+  end
+
+  context 'with an absolute path' do
     let(:path) { File.absolute_path('content', FIXTURE_PATH) }
 
-    it "uses the absolute path as is" do
+    it 'uses the absolute path as is' do
       expect(described_class.call(
         slug: 'example',
         type_options: { path: path },
@@ -14,10 +20,10 @@ RSpec.describe SolidusContent::Providers::JSON do
     end
   end
 
-  context "with a relative path" do
+  context 'with a relative path' do
     before { allow(Rails).to receive(:root).and_return(Pathname(FIXTURE_PATH)) }
 
-    it "uses the absolute path as is" do
+    it 'uses the absolute path as is' do
       expect(described_class.call(
         slug: 'example',
         type_options: { path: 'content' },

@@ -1,23 +1,32 @@
 # frozen_string_literal: true
 
-module SolidusContent::Providers::Contentful
-  def self.call(input)
-    require 'contentful' unless defined?(::Contentful)
+module SolidusContent
+  module Providers
+    class Contentful
+      class << self
+        def call(input)
+          require 'contentful' unless defined?(::Contentful)
 
-    type_options = input.dig(:type_options)
-    entry_id = input.dig(:options, :entry_id)
+          type_options = input.dig(:type_options)
 
-    client = ::Contentful::Client.new(
-      space: type_options[:contentful_space_id],
-      access_token: type_options[:contentful_access_token],
-    )
+          client = ::Contentful::Client.new(
+            space: type_options[:contentful_space_id],
+            access_token: type_options[:contentful_access_token],
+          )
 
-    entry = client.entry(entry_id)
+          entry = client.entry(input.dig(:options, :entry_id))
 
-    input.merge(
-      data: entry.fields,
-      provider_client: client,
-      provider_entry: entry,
-    )
+          input.merge(
+            data: entry.fields,
+            provider_client: client,
+            provider_entry: entry,
+          )
+        end
+
+        def fields
+          %i[contentful_space_id contentful_access_token]
+        end
+      end
+    end
   end
 end

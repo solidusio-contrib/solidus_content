@@ -1,9 +1,13 @@
-<fieldset class="no-border-bottom">
+<fieldset class="options-form no-border-bottom">
   <legend><%= SolidusContent.human_provider_name(@entry_type.provider_name) %> <%= model_class.human_attribute_name(:options) %></legend>
   <div class="row">
-    <div class="left col-12" data-hook="admin_entry_type_form">
-      <% rows = @entry_type.serialized_options.lines.size + 2 # leave two extra lines for new content %>
-      <%= form.text_area :serialized_options, class: 'fullwidth', rows: rows %>
-    </div>
+    <% @entry_type.fields.each do |field| %>
+      <div class="col-12" data-hook="admin_entry_type_<%= field %>">
+        <div class="field" id="solidus_content_entry_type_<%= field %>_field">
+          <%= form.label field %>
+          <%= form.text_field field, class: 'fullwidth' %>
+        </div>
+      </div>
+    <% end %>
   </div>
 </fieldset>

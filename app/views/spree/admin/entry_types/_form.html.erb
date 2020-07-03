@@ -20,13 +20,11 @@ end %>
           <%= form.select :provider_name, provider_options, { include_blank: false }, { disabled: form.object.provider_name_readonly?, class: 'custom-select fullwidth' } %>
         <% end %>
       </div>
-
-      <%= form.hidden_field :options, value: '{}' %>
     </div>
   </div>
 </div>
 
-<% if form.object.provider_name_readonly? %>
+<% if form.object.provider_name_readonly? && @object.fields.count > 0 %>
   <%= render "options_form", form: form %>
 <% end %>
 </div>

@@ -5,6 +5,12 @@ require 'spec_helper'
 RSpec.describe SolidusContent::Providers::SolidusStaticContent do
   let(:page) { create(:page) }
 
+  describe '.fields' do
+    subject { described_class.fields }
+
+    it { is_expected.to eq(%i[]) }
+  end
+
   context 'passing the slug in the options' do
     it 'returns static content data' do
       expect(
