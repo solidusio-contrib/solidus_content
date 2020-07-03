@@ -2,7 +2,6 @@
 
 class SolidusContent::Entry < SolidusContent::ApplicationRecord
   include SolidusContent::Provider::Fields
-  extend SolidusContent::SerializedJsonAccessor
 
   belongs_to :entry_type
 
@@ -10,8 +9,6 @@ class SolidusContent::Entry < SolidusContent::ApplicationRecord
   after_initialize :inject_entry_fields, if: :entry_type_id?
 
   validates :slug, presence: true, uniqueness: { scope: :entry_type_id }
-
-  serialized_json_accessor_for :options
 
   scope :by_slug, ->(slug) { find_by!(slug: slug) }
   scope :by_type, ->(type) {
