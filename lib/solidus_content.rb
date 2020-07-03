@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "active_support/dependencies/autoload"
-
 require 'solidus_core'
 require 'solidus_support'
 
