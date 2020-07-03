@@ -38,16 +38,16 @@ class SolidusContent::EntryType < SolidusContent::ApplicationRecord
     persisted?
   end
 
-  def fields
+  def entry_type_fields
     return unless provider_name
 
-    provider_class.fields
+    provider_class.entry_type_fields
   end
 
   private
 
   def inject_provider_fields
-    provider_based_attr_reader(fields)
+    provider_based_attr_reader(entry_type_fields)
   end
 
   def ensure_provider_name_is_not_changed

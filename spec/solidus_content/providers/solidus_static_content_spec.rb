@@ -5,8 +5,8 @@ require 'spec_helper'
 RSpec.describe SolidusContent::Providers::SolidusStaticContent do
   let(:page) { create(:page) }
 
-  describe '.fields' do
-    subject { described_class.fields }
+  describe '.entry_type_fields' do
+    subject { described_class.entry_type_fields }
 
     it { is_expected.to eq(%i[]) }
   end

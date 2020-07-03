@@ -9,7 +9,7 @@ module SolidusContent
           input.merge(data: input[:options])
         end
 
-        def fields
+        def entry_type_fields
           []
         end
       end

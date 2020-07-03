@@ -14,7 +14,7 @@ RSpec.describe 'Edit entry type', :js do
       let(:fields) { %i[date bar foo] }
 
       before do
-        allow(SolidusContent::Providers::RAW).to receive(:fields)
+        allow(SolidusContent::Providers::RAW).to receive(:entry_type_fields)
           .and_return(fields)
 
         visit spree.edit_admin_entry_type_path(entry_type)

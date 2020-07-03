@@ -20,7 +20,7 @@ module SolidusContent
           ::YAML.load_file(file).symbolize_keys
         end
 
-        def fields
+        def entry_type_fields
           %i[path]
         end
       end

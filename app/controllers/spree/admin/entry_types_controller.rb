@@ -18,7 +18,7 @@ module Spree
       end
 
       def provider_params
-        @object.fields || []
+        @object.entry_type_fields || []
       end
     end
   end

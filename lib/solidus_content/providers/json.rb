@@ -14,7 +14,7 @@ module SolidusContent
           input.merge(data: data)
         end
 
-        def fields
+        def entry_type_fields
           %i[path]
         end
       end

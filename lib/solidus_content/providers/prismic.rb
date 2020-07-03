@@ -23,7 +23,7 @@ module SolidusContent
           )
         end
 
-        def fields
+        def entry_type_fields
           %i[api_entry_point api_token]
         end
       end

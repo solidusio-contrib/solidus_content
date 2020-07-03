@@ -4,7 +4,7 @@
     <%= model_class.human_attribute_name(:options) %>
   </legend>
   <div class="row">
-    <% @entry_type.fields.each do |field| %>
+    <% @entry_type.entry_type_fields.each do |field| %>
       <div class="col-12" data-hook="admin_entry_type_<%= field %>">
         <div class="field" id="solidus_content_entry_type_<%= field %>_field">
           <%= form.label field %>
