@@ -25,7 +25,7 @@
     </div>
   </div>
 
-  <% if form.object.persisted? %>
+  <% if form.object.persisted? && @object.entry_fields.count > 0 %>
     <%= render "options_form", form: form %>
   <% end %>
 </div>

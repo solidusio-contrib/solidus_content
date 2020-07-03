@@ -23,6 +23,10 @@ module SolidusContent
         def entry_type_fields
           %i[path]
         end
+
+        def entry_fields
+          []
+        end
       end
     end
   end

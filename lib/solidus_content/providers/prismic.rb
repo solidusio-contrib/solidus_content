@@ -26,6 +26,10 @@ module SolidusContent
         def entry_type_fields
           %i[api_entry_point api_token]
         end
+
+        def entry_fields
+          %i[id]
+        end
       end
     end
   end

@@ -26,6 +26,10 @@ module SolidusContent
         def entry_type_fields
           %i[contentful_space_id contentful_access_token]
         end
+
+        def entry_fields
+          %i[entry_id]
+        end
       end
     end
   end
