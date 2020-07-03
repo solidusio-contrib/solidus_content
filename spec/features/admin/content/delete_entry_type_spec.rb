@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe 'Delete entry type' do
+RSpec.describe 'Delete entry type', :js do
   let(:admin_user) { create(:admin_user) }
 
   before do
