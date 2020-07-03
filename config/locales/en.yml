@@ -6,15 +6,28 @@ en:
     admin:
       tab:
         content: Content
+        entry_types: Types
+        entries: Entries
       entry_type:
-        new: New entry type
+        new: New type
+      entry:
+        new: New entry
     hints:
+      solidus_content/entry:
+        slug: |
+          The slug will be the handle used in either the url or to retrieve
+          the entry. The "default" value is used when the slug doesn't matter
+          and you have just one entry of that type.
+        entry_type: |
+          Select the type of content you want to create.
       solidus_content/entry_type:
         provider_name: |
           The provider can only be selected during creation, once selected you
           won't be able to change it.
   activerecord:
     attributes:
+      solidus_content/entry:
+        entry_type: Type
       solidus_content/entry_type:
         provider_name: Provider
     errors:

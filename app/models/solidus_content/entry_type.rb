@@ -2,6 +2,7 @@
 
 class SolidusContent::EntryType < ActiveRecord::Base
   include SolidusContent::Provider::Fields
+  extend SolidusContent::SerializedJsonAccessor
 
   has_many :entries, dependent: :destroy
 
@@ -12,8 +13,12 @@ class SolidusContent::EntryType < ActiveRecord::Base
   validates :name, :provider_name, presence: true
   validate :ensure_provider_name_is_not_changed
 
+  serialized_json_accessor_for :options
+
   after_initialize { self.options ||= {} }
   after_initialize :inject_provider_fields, if: :provider_name?
+
+  scope :by_name, ->(name) { find_by!(name: name) }
 
   def content_for(entry)
     provider_class.call(
@@ -43,11 +48,6 @@ class SolidusContent::EntryType < ActiveRecord::Base
 
   def inject_provider_fields
     provider_based_attr_reader(fields)
-  end
-
-  # Rely on the database type to get options in and out of strings.
-  def json_serializer
-    @json_serializer ||= ActiveRecord::Type::Json.new
   end
 
   def ensure_provider_name_is_not_changed

@@ -1,5 +1,8 @@
 <fieldset class="options-form no-border-bottom">
-  <legend><%= SolidusContent.human_provider_name(@entry_type.provider_name) %> <%= model_class.human_attribute_name(:options) %></legend>
+  <legend>
+    <%= SolidusContent.human_provider_name(@entry_type.provider_name) %>
+    <%= model_class.human_attribute_name(:options) %>
+  </legend>
   <div class="row">
     <% @entry_type.fields.each do |field| %>
       <div class="col-12" data-hook="admin_entry_type_<%= field %>">

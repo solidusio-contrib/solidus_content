@@ -1,0 +1,16 @@
+<% admin_breadcrumb link_to(plural_resource_name(model_class), spree.admin_entries_path) %>
+<% admin_breadcrumb @object.slug %>
+
+<%= render 'spree/shared/error_messages', target: @object %>
+
+<%= form_for @entry, url: spree.admin_entry_path(@entry) do |form| %>
+  <fieldset data-hook="edit_entry">
+    <%= content_tag :legend, model_class.model_name.human %>
+    <%= render 'form', form: form %>
+
+    <div class="form-buttons filter-actions actions" data-hook="buttons">
+      <%= submit_tag t('spree.actions.update'), class: 'btn btn-primary' %>
+      <%= link_to t('spree.actions.cancel'), collection_url, class: 'button' %>
+    </div>
+  </fieldset>
+<% end %>
