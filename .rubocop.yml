@@ -5,6 +5,34 @@ AllCops:
   Exclude:
     - sandbox/**/*
     - spec/dummy/**/*
+    - vendor/bundle/**/*
 
 RSpec/DescribeClass:
   Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Rails/ApplicationRecord:
+  Enabled: false
+
+RSpec/MessageSpies:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/NamedSubject:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Exclude:
+    - spec/**/*
+    - db/migrate/**/*
+    - bin/**/*
+
+RSpec/NestedGroups:
+  Enabled: false
+
+RSpec/VerifiedDoubles:
+  IgnoreSymbolicNames: true

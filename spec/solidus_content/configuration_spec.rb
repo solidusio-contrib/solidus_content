@@ -8,21 +8,22 @@ RSpec.describe SolidusContent::Configuration do
   describe '#providers' do
     context 'without a configuration' do
       it 'is an empty hash' do
-        expect(configuration.providers).to eq(Hash.new)
+        expect(configuration.providers).to eq({})
       end
     end
 
     context 'with a configuration' do
       let(:foo_provider) { double(:foo_provider) }
+
       before { configuration.providers[:foo] = foo_provider }
 
-      context 'asking for an existing configuration' do
+      context 'when asking for an existing configuration' do
         it 'returns the configuration' do
           expect(configuration.providers[:foo]).to eq(foo_provider)
         end
       end
 
-      context 'asking for a not existing configuration' do
+      context 'when asking for a not existing configuration' do
         it 'returns the configuration' do
           expect { configuration.providers[:bar] }
             .to raise_error(

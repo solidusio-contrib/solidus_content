@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 module SolidusContent::SerializedJsonAccessor
-  def serialized_json_accessor_for *names
+  def serialized_json_accessor_for(*names)
     names.each do |name|
       # Rely on the database type to get options in and out of strings.
       json_serializer = ActiveRecord::Type::Json.new

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_dependency 'solidus_content/entry_type'
 
 class Spree::SolidusContentController < Spree::StoreController

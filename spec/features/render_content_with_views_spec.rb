@@ -26,7 +26,7 @@ RSpec.describe 'Render content with views' do
   end
 
   context 'when the default route is disabled' do
-    it 'it gives 404 when the default route is disabled' do
+    it 'gives 404 when the default route is disabled' do
       SolidusContent.config.skip_default_route = true
       Rails.application.reload_routes!
 
