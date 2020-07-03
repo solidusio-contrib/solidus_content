@@ -16,7 +16,8 @@ module Spree
       end
 
       def permitted_resource_params
-        params.require(:solidus_content_entry_type)
+        params
+          .require(:solidus_content_entry_type)
           .permit(:name, :provider_name, *provider_params)
       end
 

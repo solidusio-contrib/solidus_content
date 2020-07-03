@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-class SolidusContent::Entry < ActiveRecord::Base
+class SolidusContent::Entry < SolidusContent::ApplicationRecord
   extend SolidusContent::SerializedJsonAccessor
 
   belongs_to :entry_type
 
   after_initialize { self.options ||= {} }
 
-  validates :slug, presence: true, uniqueness: {scope: :entry_type_id}
+  validates :slug, presence: true, uniqueness: { scope: :entry_type_id }
 
   serialized_json_accessor_for :options
 

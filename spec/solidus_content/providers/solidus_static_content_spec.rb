@@ -11,7 +11,7 @@ RSpec.describe SolidusContent::Providers::SolidusStaticContent do
     it { is_expected.to eq(%i[]) }
   end
 
-  context 'passing the slug in the options' do
+  context 'when passing the slug in the options' do
     it 'returns static content data' do
       expect(
         described_class.call(slug: page.slug)[:data]
@@ -19,7 +19,7 @@ RSpec.describe SolidusContent::Providers::SolidusStaticContent do
     end
   end
 
-  context 'using the entry slug' do
+  context 'when using the entry slug' do
     it 'returns static content data' do
       expect(
         described_class.call(

@@ -22,9 +22,9 @@ RSpec.describe SolidusContent::Providers::Prismic do
     let(:api_entry_point) { 'api_entry_point' }
     let(:id) { 'id' }
 
-    let(:prismic) { double('Prismic') }
-    let(:entry) { double('Prismic::API') }
-    let(:data) { double('Hash') }
+    let(:prismic) { instance_double(Prismic::API) }
+    let(:entry) { instance_double(Prismic::Form) }
+    let(:data) { instance_double(Hash) }
 
     before do
       allow(::Prismic)
@@ -38,7 +38,7 @@ RSpec.describe SolidusContent::Providers::Prismic do
       allow(entry).to receive(:fields).and_return(data)
     end
 
-    context 'using private repository' do
+    context 'when using private repository' do
       let(:api_token) { 'api_token' }
 
       let(:type_options) do
@@ -60,7 +60,7 @@ RSpec.describe SolidusContent::Providers::Prismic do
       end
     end
 
-    context 'using public repository' do
+    context 'when using public repository' do
       let(:type_options) do
         {
           api_entry_point: api_entry_point

@@ -9,7 +9,7 @@ class SolidusContent::Configuration
   # values. Each content-provider will be called passing the `entry_options:`
   # and `entry_type_options:`.
   def providers
-    @providers ||= Hash.new do |hash, key|
+    @providers ||= Hash.new do |_hash, key|
       raise UnknownProvider, "Can't find a provider for #{key.inspect}"
     end
   end

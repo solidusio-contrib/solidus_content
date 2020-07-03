@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SolidusContent::EntryType < ActiveRecord::Base
+class SolidusContent::EntryType < SolidusContent::ApplicationRecord
   include SolidusContent::Provider::Fields
   extend SolidusContent::SerializedJsonAccessor
 

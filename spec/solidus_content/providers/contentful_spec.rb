@@ -26,9 +26,9 @@ RSpec.describe SolidusContent::Providers::Contentful do
     let(:contentful_access_token) { 'contentful_access_token' }
     let(:entry_id) { 'entry_id' }
 
-    let(:contentful) { instance_double('Contenful::Client') }
-    let(:entry) { double('Contenful::Entry') }
-    let(:data) { double('Hash') }
+    let(:contentful) { instance_double(Contentful::Client) }
+    let(:entry) { instance_double(Contentful::Entry) }
+    let(:data) { instance_double(Hash) }
 
     before do
       allow(Contentful::Client)

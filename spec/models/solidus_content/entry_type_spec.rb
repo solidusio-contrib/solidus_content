@@ -13,7 +13,7 @@ RSpec.describe SolidusContent::EntryType do
     let(:entry_type) { create(:entry_type, provider_name: provider_name) }
     let(:entry) { create(:entry, slug: :example, entry_type: entry_type, options: entry_options) }
 
-    shared_examples :provider do
+    shared_examples 'a content provider' do
       it 'calls the content-provider call method' do
         expect(
           SolidusContent.config.providers[provider_name.to_sym]
@@ -31,10 +31,10 @@ RSpec.describe SolidusContent::EntryType do
 
     context 'with the JSON provider' do
       let(:provider_name) { 'json' }
-      let(:entry_type_options) { {path: "#{FIXTURES_PATH}/content"} }
+      let(:entry_type_options) { { path: "#{FIXTURES_PATH}/content" } }
       let(:content) { { foo: 'bar' } }
 
-      it_behaves_like :provider
+      it_behaves_like 'a content provider'
     end
 
     context 'with the RAW provider' do
@@ -42,21 +42,21 @@ RSpec.describe SolidusContent::EntryType do
       let(:entry_options) { { foo: 'bar' } }
       let(:content) { { foo: 'bar' } }
 
-      it_behaves_like :provider
+      it_behaves_like 'a content provider'
     end
 
     context 'with the solidus static content provider' do
       let(:provider_name) { 'solidus_static_content' }
       let(:content) { { foo: 'bar' } }
 
-      it_behaves_like :provider
+      it_behaves_like 'a content provider'
     end
 
     context 'with the Prismic provider' do
       let(:provider_name) { 'prismic' }
       let(:content) { { foo: 'bar' } }
 
-      it_behaves_like :provider
+      it_behaves_like 'a content provider'
     end
 
     context 'with an unknown provider' do
@@ -74,14 +74,14 @@ RSpec.describe SolidusContent::EntryType do
 
     context 'with existing name' do
       it 'returns the entry_type' do
-        expect(SolidusContent::EntryType.by_name(:home)).to eql home
+        expect(described_class.by_name(:home)).to eql home
       end
     end
 
     context 'with non-existing name' do
       it 'will raise an ActiveRecord::RecordNotFound exception' do
         expect{
-          SolidusContent::EntryType.by_name(:post)
+          described_class.by_name(:post)
         }.to raise_error(ActiveRecord::RecordNotFound)
       end
     end

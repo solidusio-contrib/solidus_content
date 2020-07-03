@@ -24,7 +24,7 @@ RSpec.describe SolidusContent::SerializedJsonAccessor do
     expect(model.serialized_foo).to eq('{}')
     expect(model.foo).to eq({})
 
-    model.foo = {"foo" => 123}
+    model.foo = { "foo" => 123 }
     expect(model.serialized_foo).to eq('{"foo":123}')
     expect(model.foo).to eq("foo" => 123)
   end
