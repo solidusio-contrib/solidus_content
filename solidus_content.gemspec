@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.email = 'contact@solidus.io'
 
   spec.summary = 'Manage your Solidus content'
-  spec.description = 'An extremely modular and extensible CMS for Solidus that can integrate with many external CMS systems such as Prismic and Contentful.'
+  spec.description = 'A modular CMS for Solidus integrating sources such as Prismic and Contentful'
   spec.homepage = 'https://github.com/nebulab/solidus_content#readme'
   spec.license = 'BSD-3-Clause'
 
