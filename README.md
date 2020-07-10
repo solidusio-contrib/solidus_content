@@ -3,7 +3,9 @@
 
 [![nebulab](https://circleci.com/gh/nebulab/solidus_content.svg?style=shield)](https://app.circleci.com/pipelines/github/nebulab/solidus_content)
 
-Introduction goes here.
+An extremely modular and extensible CMS for Solidus.
+
+It can consume content from different sources such as Contentful, Prismic.io or custom JSON, YAML and raw formats. It makes it super easy to render and customize any content.
 
 ## Installation
 

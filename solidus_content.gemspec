@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.authors = ['Andrea Vassallo', 'Elia Schito']
   spec.email = 'contact@solidus.io'
 
-  spec.summary = 'Manage your Solidus content sources'
-  spec.description = ''
+  spec.summary = 'Manage your Solidus content'
+  spec.description = 'An extremely modular and extensible CMS for Solidus that can integrate with many external CMS systems such as Prismic and Contentful.'
   spec.homepage = 'https://github.com/nebulab/solidus_content#readme'
   spec.license = 'BSD-3-Clause'
 
