@@ -1,7 +1,7 @@
 
 # SolidusContent
 
-[![nebulab](https://circleci.com/gh/nebulab/solidus_content.svg?style=shield)](https://app.circleci.com/pipelines/github/nebulab/solidus_content)
+[![nebulab](https://circleci.com/gh/solidusio-contrib/solidus_content.svg?style=shield)](https://app.circleci.com/pipelines/github/nebulab/solidus_content)
 
 An extremely modular and extensible CMS for Solidus.
 
