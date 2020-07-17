@@ -9,13 +9,13 @@ Gem::Specification.new do |spec|
   spec.email = 'contact@solidus.io'
 
   spec.summary = 'Manage your Solidus content'
-  spec.description = 'An extremely modular and extensible CMS for Solidus that can integrate with many external CMS systems such as Prismic and Contentful.'
-  spec.homepage = 'https://github.com/nebulab/solidus_content#readme'
+  spec.description = 'A modular CMS for Solidus integrating sources such as Prismic and Contentful'
+  spec.homepage = 'https://github.com/solidusio-contrib/solidus_content#readme'
   spec.license = 'BSD-3-Clause'
 
   spec.metadata['homepage_uri'] = spec.homepage
-  spec.metadata['source_code_uri'] = 'https://github.com/nebulab/solidus_content#readme'
-  spec.metadata['changelog_uri'] = 'https://github.com/nebulab/solidus_content/releases'
+  spec.metadata['source_code_uri'] = 'https://github.com/solidusio-contrib/solidus_content#readme'
+  spec.metadata['changelog_uri'] = 'https://github.com/solidusio-contrib/solidus_content/releases'
 
   spec.required_ruby_version = Gem::Requirement.new('~> 2.5')
 
