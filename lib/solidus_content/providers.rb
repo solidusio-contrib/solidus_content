@@ -18,6 +18,7 @@ module SolidusContent
   config.register_provider :raw, :RAW
   config.register_provider :yaml, :YAML
   config.register_provider :contentful, :Contentful
+  config.register_provider :datocms, :DatoCms
   config.register_provider :prismic, :Prismic
   config.register_provider :solidus_static_content, :SolidusStaticContent
 end

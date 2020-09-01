@@ -25,6 +25,7 @@ end
 
 # Supported content providers
 gem 'contentful'
+gem 'dato', require: 'dato'
 gem 'prismic.io', require: 'prismic'
 gem 'solidus_static_content', github: 'solidusio-contrib/solidus_static_content'
 
