@@ -15,6 +15,7 @@ RSpec.describe 'Delete entry', :js do
   it 'deletes entry' do
     expect {
       accept_confirm { find('.delete-entry').click }
+      expect(page).not_to have_selector('.delete-entry')
     }.to change(SolidusContent::Entry, :count).from(1).to(0)
   end
 end

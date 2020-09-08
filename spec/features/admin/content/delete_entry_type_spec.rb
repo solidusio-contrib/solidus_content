@@ -15,6 +15,7 @@ RSpec.describe 'Delete entry type', :js do
   it 'deletes entry type' do
     expect {
       accept_confirm { find('.delete-entry-type').click }
+      expect(page).not_to have_selector('.delete-entry-type')
     }.to change(SolidusContent::EntryType, :count).from(1).to(0)
   end
 end
