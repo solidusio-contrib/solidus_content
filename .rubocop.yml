@@ -22,6 +22,9 @@ RSpec/MessageSpies:
 RSpec/MultipleExpectations:
   Enabled: false
 
+RSpec/MultipleMemoizedHelpers:
+  Max: 8
+
 RSpec/NamedSubject:
   Enabled: false
 
