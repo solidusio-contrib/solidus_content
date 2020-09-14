@@ -1,7 +1,8 @@
 
 # SolidusContent
 
-[![nebulab](https://circleci.com/gh/solidusio-contrib/solidus_content.svg?style=shield)](https://app.circleci.com/pipelines/github/nebulab/solidus_content)
+[![CircleCI](https://circleci.com/gh/solidusio-contrib/solidus_content.svg?style=shield)](https://circleci.com/gh/solidusio-contrib/solidus_content)
+[![codecov](https://codecov.io/gh/solidusio-contrib/solidus_content/branch/master/graph/badge.svg)](https://codecov.io/gh/solidusio-contrib/solidus_content)
 
 An extremely modular and extensible CMS for Solidus.
 
@@ -389,7 +390,7 @@ Use Ctrl-C to stop
 Your new extension version can be released using `gem-release` like this:
 
 ```shell
-bundle exec gem bump -v VERSION --tag --push --remote upstream && gem release
+bundle exec gem bump -v VERSION --tag --push --remote origin && gem release
 ```
 
 ## License
