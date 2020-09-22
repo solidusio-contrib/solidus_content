@@ -8,8 +8,8 @@ module SolidusContent
       class << self
         def call(input)
           dir = Rails.root.join(input.dig(:type_options, :path))
-          file = dir.join(input[:slug] + '.yml')
-          file = dir.join(input[:slug] + '.yaml') unless file.exist?
+          file = dir.join("#{input[:slug]}.yml")
+          file = dir.join("#{input[:slug]}.yaml") unless file.exist?
 
           data = load(file)
 
