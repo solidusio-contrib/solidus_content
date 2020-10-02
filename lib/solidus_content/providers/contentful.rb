@@ -7,7 +7,7 @@ module SolidusContent
         def call(input)
           require 'contentful' unless defined?(::Contentful)
 
-          type_options = input.dig(:type_options)
+          type_options = input[:type_options]
 
           client = ::Contentful::Client.new(
             space: type_options[:contentful_space_id],

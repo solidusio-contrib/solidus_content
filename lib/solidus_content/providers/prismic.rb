@@ -7,11 +7,11 @@ module SolidusContent
         def call(input)
           require 'prismic' unless defined?(::Prismic)
 
-          type_options = input.dig(:type_options)
+          type_options = input[:type_options]
 
           client = ::Prismic.api(
             type_options[:api_entry_point],
-            type_options.dig(:api_token)
+            type_options[:api_token]
           )
 
           entry = client.getByID(input.dig(:options, :id))
