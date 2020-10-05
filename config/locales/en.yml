@@ -42,6 +42,7 @@ en:
       json: JSON
       yaml: YAML
       contentful: Contentful
+      datocms: DatoCMS
       prismic: Prismic
       solidus_static_content: SolidusStaticContent
     hints:

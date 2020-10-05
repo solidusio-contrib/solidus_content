@@ -6,7 +6,7 @@
 
 An extremely modular and extensible CMS for Solidus.
 
-It can consume content from different sources such as Contentful, Prismic.io or custom JSON, YAML and raw formats. It makes it super easy to render and customize any content.
+It can consume content from different sources such as Contentful, DatoCMS, Prismic.io or custom JSON, YAML and raw formats. It makes it super easy to render and customize any content.
 
 ## Installation
 
@@ -67,13 +67,13 @@ inside `app/views/spree/solidus_content/` with the name of the entry type you'll
 be able to render your content.
 
 E.g. `app/views/spree/solidus_content/home.html.erb`:
+
 ```erb
 <h1><%= @entry.data[:title] %></h1>
 ```
 
 Then, visit `/c/home/default` or even just `/c/home` (when the content slug is
 "default" it can be omitted).
-
 
 ### With a custom route
 
@@ -226,6 +226,56 @@ entry = SolidusContent::Entry.create!(
 ```
 
 _Be sure to have added `gem "contentful"` to your Gemfile._
+
+### DatoCMS
+
+To fetch the data we have to create a connection with DatoCMS passing the
+`api_token` to the entry-type options.
+
+```rb
+posts = SolidusContent::EntryType.create(
+  name: 'posts',
+  provider_name: 'datocms',
+  options: {
+    api_token: 'XXX'
+  }
+)
+```
+
+If we need to work on a sandbox environment, add the `environment` option:
+
+```rb
+posts = SolidusContent::EntryType.create(
+  name: 'posts',
+  provider_name: 'datocms',
+  options: {
+    api_token: 'XXX',
+    environment: 'my-sandbox'
+  }
+)
+```
+
+Will fetch the data from DatoCMS passing the `item_id` entry option:
+
+```rb
+entry = SolidusContent::Entry.create!(
+  slug: '2020-03-27-hello-world',
+  entry_type: posts,
+  options: { item_id: 'XXX', version: 'published' }
+)
+```
+
+If we want to retrieve the latest available version of the record instead of the currently published version, remove the `version` option:
+
+```rb
+entry = SolidusContent::Entry.create!(
+  slug: '2020-03-27-hello-world',
+  entry_type: posts,
+  options: { item_id: 'XXX' }
+)
+```
+
+_Be sure to have added `gem "dato"` to your Gemfile._
 
 ### Prismic
 
