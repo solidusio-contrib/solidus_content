@@ -28,11 +28,15 @@ module SolidusContent
     end
   end
 
-  def self.config
-    @config ||= Configuration.new
-  end
+  class << self
+    def configuration
+      @configuration ||= Configuration.new
+    end
 
-  def self.configure
-    yield config
+    alias config configuration
+
+    def configure
+      yield configuration
+    end
   end
 end
