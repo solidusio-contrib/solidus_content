@@ -83,7 +83,7 @@ RSpec.describe SolidusContent::Entry do
   end
 
   specify "#data" do
-    expect(entry.entry_type)
+    allow(entry.entry_type)
       .to receive(:content_for).with(entry).and_return(data: :foo)
 
     expect(entry.data).to eq(:foo)
@@ -92,7 +92,7 @@ RSpec.describe SolidusContent::Entry do
   specify "#content" do
     content = instance_double(Hash)
 
-    expect(entry.entry_type)
+    allow(entry.entry_type)
       .to receive(:content_for).with(entry).and_return(content)
 
     expect(entry.content).to eq(content)
