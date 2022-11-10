@@ -15,7 +15,7 @@ RSpec.describe SolidusContent::EntryType do
 
     shared_examples 'a content provider' do
       it 'calls the content-provider call method' do
-        expect(
+        allow(
           SolidusContent.config.providers[provider_name.to_sym]
         ).to receive(:call).with(
           slug: entry.slug,

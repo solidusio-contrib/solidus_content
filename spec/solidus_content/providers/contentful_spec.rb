@@ -43,12 +43,12 @@ RSpec.describe SolidusContent::Providers::Contentful do
     end
 
     it 'returns data using Contentful client' do
-      expect(Contentful::Client)
+      allow(Contentful::Client)
         .to receive(:new)
         .with(space: contentful_space_id, access_token: contentful_access_token)
         .and_return(contentful)
 
-      expect(contentful).to receive(:entry).with(entry_id).and_return(entry)
+      allow(contentful).to receive(:entry).with(entry_id).and_return(entry)
 
       expect(subject[:data]).to eq(data)
     end

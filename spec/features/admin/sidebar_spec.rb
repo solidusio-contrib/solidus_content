@@ -12,6 +12,8 @@ describe 'Sidebar', :js do
   end
 
   it 'shows Content menu item in the sidebar' do
+    find('#admin-nav-toggle').click
+
     within '[data-hook="admin_tabs"]' do
       expect(page).to have_text(I18n.t(:content, scope: %i[spree admin tab]))
     end

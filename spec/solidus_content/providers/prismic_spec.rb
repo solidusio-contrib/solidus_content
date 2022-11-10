@@ -49,12 +49,12 @@ RSpec.describe SolidusContent::Providers::Prismic do
       end
 
       it 'returns data using Prismic client' do
-        expect(::Prismic)
+        allow(::Prismic)
           .to receive(:api)
           .with(api_entry_point, api_token)
           .and_return(prismic)
 
-        expect(prismic).to receive(:getByID).with(id).and_return(entry)
+        allow(prismic).to receive(:getByID).with(id).and_return(entry)
 
         expect(subject[:data]).to eq(data)
       end
@@ -68,12 +68,12 @@ RSpec.describe SolidusContent::Providers::Prismic do
       end
 
       it 'returns data using Prismic client' do
-        expect(::Prismic)
+        allow(::Prismic)
           .to receive(:api)
           .with(api_entry_point, nil)
           .and_return(prismic)
 
-        expect(prismic).to receive(:getByID).with(id).and_return(entry)
+        allow(prismic).to receive(:getByID).with(id).and_return(entry)
 
         expect(subject[:data]).to eq(data)
       end

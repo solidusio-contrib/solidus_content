@@ -54,12 +54,12 @@ RSpec.describe SolidusContent::Providers::DatoCms do
     end
 
     it 'returns data using DatoCMS client' do
-      expect(Dato::Site::Client)
+      allow(Dato::Site::Client)
         .to receive(:new)
         .with(api_token, environment: environment)
         .and_return(dato)
 
-      expect(repo).to receive(:find).with(item_id, version: version).and_return(fields)
+      allow(repo).to receive(:find).with(item_id, version: version).and_return(fields)
 
       expect(subject[:data]).to eq(fields)
     end
